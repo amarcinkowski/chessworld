@@ -3,6 +3,12 @@ package io.github.amarcinkowski
 /**
  * Created by am on 15.11.17.
  */
-enum PieceType {
-    KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN
+public enum PieceType {
+    KING('K'), ROOK('R'), BISHOP('B'), QUEEN('Q'), KNIGHT('N'), PAWN('P')
+
+    private PieceType(String notation) {
+        this.notation = notation
+    }
+    private final String notation
+    public final String notation() {notation}
 }
