@@ -1,5 +1,6 @@
 package io.github.amarcinkowski
 
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 /**
@@ -19,6 +20,7 @@ class BoardSpec extends Specification {
                         "_ _ _ _ _ _ _ _\n" +
                         "P P P P P P P P\n" +
                         "R N B Q K B N R\n"
+        LoggerFactory.getLogger(BoardSpec.class).info("\n" + board.toString())
         expect:
         assert board.toString() == expected
     }
