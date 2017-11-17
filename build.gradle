@@ -17,4 +17,10 @@ dependencies {
     )
 }
 
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
 mainClassName = 'io.github.amarcinkowski.Game'

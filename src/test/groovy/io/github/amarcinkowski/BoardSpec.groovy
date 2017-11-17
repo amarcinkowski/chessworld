@@ -1,12 +1,15 @@
 package io.github.amarcinkowski
 
+import groovy.util.logging.Slf4j
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 /**
  * Created by am on 16.11.17.
  */
+@Slf4j
 class BoardSpec extends Specification {
+
 
     def "Board should look like this"() {
         given:
@@ -20,7 +23,7 @@ class BoardSpec extends Specification {
                         "_ _ _ _ _ _ _ _\n" +
                         "P P P P P P P P\n" +
                         "R N B Q K B N R\n"
-        LoggerFactory.getLogger(BoardSpec.class).info("\n" + board.toString())
+        log.info "\n${board}"
         expect:
         assert board.toString() == expected
     }
