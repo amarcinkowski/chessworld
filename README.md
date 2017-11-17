@@ -1,4 +1,4 @@
-# chessworld
+# chessworld [![Build Status](https://travis-ci.org/amarcinkowski/chessworld.svg?branch=master)](https://travis-ci.org/amarcinkowski/chessworld)
 
 app aiming at teaching chess
 
