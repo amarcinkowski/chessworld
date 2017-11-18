@@ -13,8 +13,21 @@ class Square {
         return ((int) column - (int) 'a') * 8 + row
     }
 
+    public Square(String a1) {
+        column = a1.charAt(0)
+        row = a1.charAt(1)
+    }
+
     int[] getXY() {
         return [row, (int) column - (int) 'a']
+    }
+
+    int getX() {
+        return row
+    }
+
+    int getY() {
+        return (int) column - (int) 'a'
     }
 
     static int[] n2xy(int n) {
