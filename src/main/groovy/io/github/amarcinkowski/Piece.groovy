@@ -22,7 +22,7 @@ class Piece {
 
     @Override
     String toString() {
-        return color == Color.WHITE ? type.notation : type.notation.toLowerCase()
+        return color == Color.WHITE ? type.notation() : type.notation().toLowerCase()
     }
 
 }

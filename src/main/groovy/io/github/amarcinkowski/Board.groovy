@@ -6,6 +6,9 @@ import java.util.function.Predicate
  * Created by am on 15.11.17.
  */
 class Board {
+
+    static locale = Language.DEFAULT.locale()
+
     def squares = new Square[64]
     List<Piece> pieces = []
 
@@ -55,7 +58,7 @@ class Board {
         }
         def result = ""
         for (int i = 1; i < 9; i++) {
-            result += board.takeRight(8 * i).take(8).join(" ").replaceAll('null', '_') + System.getProperty("line.separator")
+            result += board.takeRight(8 * i).take(8).join(" ").replaceAll('null', PieceType.EMPTY.notation()) + System.getProperty("line.separator")
         }
         return result
     }
