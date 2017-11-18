@@ -24,7 +24,7 @@ class MovesSpec extends Specification {
         from | to   | valid
         'b2' | 'b3' | true
         'c2' | 'c3' | true
-        'b3' | 'b4' | true
+        'c2' | 'c4' | true
         'b2' | 'b4' | true
         'b3' | 'b2' | false
         'a1' | 'a3' | false
