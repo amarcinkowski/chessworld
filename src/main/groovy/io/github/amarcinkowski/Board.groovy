@@ -22,7 +22,7 @@ class Board {
     Predicate<Piece> half = { it.square > 16 }
 
     def addPieces() {
-        def cloned = new Piece(type: PieceType.PAWN, color: Color.WHITE)
+        def cloned = new Piece(color: Color.WHITE)
         for (int i = 0; i < 32; i++) {
             pieces += cloned.clone()
             pieces.get(i).square = i + 1
@@ -38,8 +38,8 @@ class Board {
         }
         pieces.findAll { p -> p.square > 16 }.forEach(setBlack)
         pieces.findAll { p -> p.square > 16 }.forEach(moveBlack)
-        pieces.find { p -> p.color == Color.BLACK && p.type == PieceType.KING}.square += 1
-        pieces.find { p -> p.color == Color.BLACK && p.type == PieceType.QUEEN}.square -= 1
+        pieces.find { p -> p.color == Color.BLACK && p.type == PieceType.KING }.square += 1
+        pieces.find { p -> p.color == Color.BLACK && p.type == PieceType.QUEEN }.square -= 1
     }
 
     Board() {
