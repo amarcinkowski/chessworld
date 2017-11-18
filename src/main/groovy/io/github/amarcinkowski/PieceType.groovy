@@ -14,16 +14,13 @@ package io.github.amarcinkowski
  U+265D	♝	e2 99 9d	BLACK CHESS BISHOP
  U+265E	♞	e2 99 9e	BLACK CHESS KNIGHT
  U+265F	♟	e2 99 9f	BLACK CHESS PAWN
- U+2205 ∅               EMPTY
+ U+2205 ∅               NONE
  */
 public enum PieceType {
-    KING('K'), ROOK('R'), BISHOP('B'), QUEEN('Q'), KNIGHT('N'), PAWN('P'), EMPTY('_')
+    KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN, NONE
 
-    private PieceType(String notation) {
-        this.notation = notation
+    @Override
+    String toString() {
+        return name().toLowerCase()
     }
-    private final String notation
-
-    public final String notation() { Message.get("piece." + name().toLowerCase() + ".notation") }
-
 }

@@ -4,6 +4,8 @@ package io.github.amarcinkowski
  * Created by am on 15.11.17.
  */
 class Game {
+    static locale = Language.DEFAULT.locale()
+
     Player white
     Player black
     Board board = new Board()

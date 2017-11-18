@@ -1,21 +1,37 @@
 package io.github.amarcinkowski
 
-/**
- * Created by am on 16.11.17.
- */
+import static Color.*
+
 class Arrangment {
 
-    final static pieces = []
+    final static List<Piece> pieces = []
 
     static {
-        pieces.add(PieceType.ROOK)
-        pieces.add(PieceType.KNIGHT)
-        pieces.add(PieceType.BISHOP)
-        pieces.add(PieceType.QUEEN)
-        pieces.add(PieceType.KING)
-        pieces.add(PieceType.BISHOP)
-        pieces.add(PieceType.KNIGHT)
-        pieces.add(PieceType.ROOK)
-        8.times { pieces.add(PieceType.PAWN) }
+        def i = 1
+        pieces.add(new Piece(type: PieceType.ROOK, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.KNIGHT, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.BISHOP, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.QUEEN, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.KING, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.BISHOP, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.KNIGHT, color: WHITE, square: i++))
+        pieces.add(new Piece(type: PieceType.ROOK, color: WHITE, square: i++))
+        8.times {
+            pieces.add(new Piece(type: PieceType.PAWN, color: WHITE, square: i++))
+        }
+        32.times {
+            pieces.add(new Piece(type: PieceType.NONE))
+        }
+        8.times {
+            pieces.add(new Piece(type: PieceType.PAWN, color: BLACK, square: i++))
+        }
+        pieces.add(new Piece(type: PieceType.ROOK, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.KNIGHT, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.BISHOP, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.QUEEN, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.KING, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.BISHOP, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.KNIGHT, color: BLACK, square: i++))
+        pieces.add(new Piece(type: PieceType.ROOK, color: BLACK, square: i))
     }
 }

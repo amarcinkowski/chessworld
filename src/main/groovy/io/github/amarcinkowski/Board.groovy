@@ -1,13 +1,12 @@
 package io.github.amarcinkowski
 
-import java.util.function.Predicate
+import groovy.util.logging.Slf4j
 
 /**
  * Created by am on 15.11.17.
  */
+@Slf4j
 class Board {
-
-    static locale = Language.DEFAULT.locale()
 
     def squares = new Square[64]
     List<Piece> pieces = []
@@ -22,27 +21,8 @@ class Board {
         }
     }
 
-    Predicate<Piece> half = { it.square > 16 }
-
     def addPieces() {
-        def cloned = new Piece(color: Color.WHITE)
-        for (int i = 0; i < 32; i++) {
-            pieces += cloned.clone()
-            pieces.get(i).square = i + 1
-            pieces.get(i).type = i > 15 ?
-                    Arrangment.pieces.get(Math.abs(31 - i) % 16) :
-                    Arrangment.pieces.get(i % 16)
-        }
-        def setBlack = {
-            p -> p.color = Color.BLACK;
-        }
-        def moveBlack = {
-            p -> p.move(0, 4)
-        }
-        pieces.findAll { p -> p.square > 16 }.forEach(setBlack)
-        pieces.findAll { p -> p.square > 16 }.forEach(moveBlack)
-        pieces.find { p -> p.color == Color.BLACK && p.type == PieceType.KING }.square += 1
-        pieces.find { p -> p.color == Color.BLACK && p.type == PieceType.QUEEN }.square -= 1
+        pieces = Arrangment.getPieces()
     }
 
     Board() {
@@ -52,14 +32,7 @@ class Board {
 
     @Override
     String toString() {
-        def board = new Piece[64] as List<Piece>
-        for (int i = 0; i < pieces.size(); i++) {
-            board.set(pieces.get(i).square - 1, pieces.get(i))
-        }
-        def result = ""
-        for (int i = 1; i < 9; i++) {
-            result += board.takeRight(8 * i).take(8).join(" ").replaceAll('null', PieceType.EMPTY.notation()) + System.getProperty("line.separator")
-        }
-        return result
+        // group by 8 elements jointed by new line / replace null with NONE
+        pieces.collate(8)*.join(' ').reverse().join('\n')
     }
 }

@@ -11,4 +11,9 @@ enum Color {
     public Color(String notation) {
         this.notation = notation
     }
+
+    @Override
+    String toString() {
+        name().toLowerCase()
+    }
 }

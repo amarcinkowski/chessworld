@@ -18,16 +18,6 @@ class Square {
         this.row = a1.charAt(1)
     }
 
-//    public Square(String a1) {
-//        this.column = a1.charAt(0)
-//        this.row = a1.charAt(1)
-//    }
-//
-//    public Square(String column, Integer row) {
-//        this.column = column
-//        this.row = row
-//    }
-
     int[] getXY() {
         return [row, (int) column - (int) 'a']
     }
