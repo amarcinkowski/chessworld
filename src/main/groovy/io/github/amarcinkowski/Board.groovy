@@ -38,6 +38,6 @@ class Board {
     @Override
     String toString() {
         // group by 8 elements jointed by new line / replace null with NONE
-        pieces.collate(8)*.join(' ').reverse().join('\n') + "\na b c d e f g h"
+        pieces.collate(8)*.join(' ').reverse().join('\n')
     }
 }
