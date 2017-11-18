@@ -40,4 +40,20 @@ class SquareSpec extends Specification {
         16 | 8 | 2
         64 | 8 | 8
     }
+
+    @Unroll
+    def "#a1  should convert to #n"() {
+        expect:
+        n == Square.a12n(a1)
+        where:
+        n  | a1
+        1  | 'a1'
+        2  | 'b1'
+        3  | 'c1'
+        8  | 'h1'
+        9  | 'a2'
+        17 | 'a3'
+        16 | 'h2'
+        64 | 'h8'
+    }
 }

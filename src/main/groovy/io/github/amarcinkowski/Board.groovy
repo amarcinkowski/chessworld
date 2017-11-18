@@ -30,9 +30,14 @@ class Board {
         addPieces()
     }
 
+    Piece getPiece(String a1) {
+        log.info "a1->n $a1"
+        pieces.get(Square.a12n(a1) - 1)
+    }
+
     @Override
     String toString() {
         // group by 8 elements jointed by new line / replace null with NONE
-        pieces.collate(8)*.join(' ').reverse().join('\n')
+        pieces.collate(8)*.join(' ').reverse().join('\n') + "\na b c d e f g h"
     }
 }
