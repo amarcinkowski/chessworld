@@ -15,6 +15,10 @@ class Game {
         println board
     }
 
+    static String language() {
+        locale.getLanguage().toString()
+    }
+
     public static void main(String[] args) {
         new Game()
     }

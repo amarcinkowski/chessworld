@@ -4,7 +4,7 @@ package io.github.amarcinkowski
  * Created by am on 16.11.17.
  */
 enum Color {
-    BLACK('b'), WHITE('w')
+    BLACK('b'), WHITE('w'), NULL('null')
 
     private final String notation
 
