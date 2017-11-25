@@ -17,7 +17,7 @@ class MovesSpec extends Specification {
         given:
         def board = new Board()
         def piece = board.getPiece(from)
-        log.info "$piece"
+        log.info "$piece $from $to" // TODO pgn? algebraic notation "$pieceWithoutPawns$to"
         expect:
         assert new Move(board: board, from: new Square(a1: from), to: new Square(a1: to)).isValid() == valid
         where:

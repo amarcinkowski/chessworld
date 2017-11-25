@@ -11,7 +11,8 @@ class SquareSpec extends Specification {
     @Unroll
     def "#n should convert to #x,#y"() {
         expect:
-        [x, y] == Square.n2xy(n)
+        def square = new Square(n: n)
+        [x, y] == [square.x, square.y]
         where:
         n  | x | y
         1  | 1 | 1
@@ -44,7 +45,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#a1  should convert to #n"() {
         expect:
-        n == Square.a12n(a1)
+        n == new Square().setA1(a1).n
         where:
         n  | a1
         1  | 'a1'
