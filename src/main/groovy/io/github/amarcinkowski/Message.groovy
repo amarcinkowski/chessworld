@@ -9,9 +9,26 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class Message {
 
-    static String get(String code) {
-        def locale = Game.locale ?: Locale.getDefault()
-        ResourceBundle.getBundle("message", locale).getObject(code)
+    final static msgs = [:]
+
+    static {
+        for (Language lang : Language.values()) {
+            def resource = ResourceBundle.getBundle("message", lang.locale())
+            def keys = resource.keySet()
+            for (String key : keys) {
+                def value = resource.getObject(key)
+                msgs.put(lang.toString() + value, key)
+            }
+        }
+    }
+
+    static String byValue(String value) {
+        msgs.get(value)
+    }
+
+    static String get(String... params) {
+        def key = params.findAll { 'null' != it }.join('.') // 'king', 'white' -> 'king.white' TODO king.white -> white.king
+        ResourceBundle.getBundle("message", Game.locale).getObject(key)
     }
 
 }

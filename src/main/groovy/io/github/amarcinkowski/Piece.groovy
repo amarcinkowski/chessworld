@@ -10,25 +10,23 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class Piece {
     Enum<PieceType> type
-    Integer square
     Color color
     boolean captured
 
-    def move(int x, int y) {
-        int[] xy = Square.n2xy(square)
-        xy[0] += x
-        xy[1] += y
-        square = Square.xy2n(xy[0], xy[1])
+    static byNotation(Character notation) {
+        def splitByDot = { it -> it?.contains(".") ?  it.split("\\.") : [it, "NULL"] }
+        def getPieceType = { it -> PieceType.valueOf( splitByDot(it)[0].toString()?.toUpperCase()) }
+        def getPieceColor = { it -> Color.valueOf( splitByDot(it)[1]?.toString()?.toUpperCase()) }
+        def pieceByName = { it -> new Piece(type: getPieceType(it), color: getPieceColor(it)) }
+        String key = Message.byValue(Game.language() + notation)
+        def piece = pieceByName(key)
+        log.trace "$notation -> $key -> $piece"
+        piece
     }
 
     @Override
     String toString() {
-        def key = "$type"
-        if (color) {
-            key += ".$color"
-        }
-
-        Message.get(key)
+        Message.get("${type}", "${color}")
     }
 
 }

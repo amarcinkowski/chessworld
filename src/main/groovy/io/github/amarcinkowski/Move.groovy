@@ -19,13 +19,13 @@ class Move {
     }
 
     boolean isValid() {
-        def p = board.getPiece(getFrom().getA1())
+        def p = board.getPiece(getFrom())
 
         p.type == PAWN && (
                 // 1-forward
-                moveCoordinate(from, to) == [1, 0]
+                moveCoordinate(from, to) == [0, 1]
                         // 2-forward from row 2
-                        || moveCoordinate(from, to) == [2, 0] && from.row == 2)
+                        || moveCoordinate(from, to) == [0, 2] && from.row == 2)
         // 1-diagonal with capture
 //        ||
     }

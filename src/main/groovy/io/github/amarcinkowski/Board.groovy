@@ -1,43 +1,41 @@
 package io.github.amarcinkowski
 
+import groovy.transform.ToString
 import groovy.util.logging.Slf4j
 
-/**
- * Created by am on 15.11.17.
- */
 @Slf4j
-class Board {
+@ToString
+class Board implements Serializable {
 
-    def squares = new Square[64]
-    List<Piece> pieces = []
-
-    def createBoard() {
-        char col = 'a'
-        for (int i = 0; i < 64; i += 8) {
-            for (int j = 0; j < 8; j++) {
-                squares[i + j] = new Square(column: col, row: j + 1)
-            }
-            col++;
-        }
-    }
-
-    def addPieces() {
-        pieces = Arrangment.getPieces()
-    }
+    private final squares = new Square[64]
+    private final List<Piece> pieces = []
 
     Board() {
-        createBoard()
-        addPieces()
+        pieces = Arrangment.getPieces()
+        squares = Arrangment.getSquares()
     }
 
-    Piece getPiece(String a1) {
-        log.info "a1->n $a1"
-        pieces.get(Square.a12n(a1) - 1)
+    Piece getPiece(Square sq) {
+//        def sq = new Square().setA1(a1)
+//        pieces.get(new Square().setA1(a1).getN())
+        pieces.get(sq.n - 1)
     }
 
+    // TODO BoardSerializer ?
     @Override
     String toString() {
         // group by 8 elements jointed by new line / replace null with NONE
         pieces.collate(8)*.join(' ').reverse().join('\n')
     }
+
+    // TODO BoardBuilder ? BoardSerializer ?
+    Board fromString(String board) {
+        pieces.clear()
+        char[] notation = board.replaceAll(' ', '').split('\n').reverse().join('').toCharArray()
+        notation.each { pieces.add(Piece.byNotation(it)) }
+        log.debug "Loaded: " + toString()
+        this
+    }
+
+
 }

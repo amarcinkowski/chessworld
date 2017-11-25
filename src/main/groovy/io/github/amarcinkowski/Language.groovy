@@ -14,4 +14,9 @@ enum Language {
     }
 
     public Locale locale() { locale }
+
+    @Override
+    String toString() {
+        this.locale.getLanguage().toString()
+    }
 }
