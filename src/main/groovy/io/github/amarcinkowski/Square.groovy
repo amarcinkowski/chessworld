@@ -15,12 +15,16 @@ class Square {
     Character column
     Integer row
 
-    Square setA1(String a1) {
-        log.info "SQUARE a1 $a1"
+    public Square(String a1) {
+        this.setA1(a1)
+    }
+
+    public Square() {
+    }
+
+    void setA1(String a1) {
         this.column = a1.charAt(0)
         this.row = a1.charAt(1).toString().toInteger()
-        log.info "SQAURE c r $column $row"
-        this
     }
 
     String getA1() {

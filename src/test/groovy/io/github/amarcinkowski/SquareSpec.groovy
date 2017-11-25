@@ -45,7 +45,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#a1  should convert to #n"() {
         expect:
-        n == new Square().setA1(a1).n
+        n == new Square(a1).n
         where:
         n  | a1
         1  | 'a1'

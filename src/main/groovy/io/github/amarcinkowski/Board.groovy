@@ -16,8 +16,6 @@ class Board implements Serializable {
     }
 
     Piece getPiece(Square sq) {
-//        def sq = new Square().setA1(a1)
-//        pieces.get(new Square().setA1(a1).getN())
         pieces.get(sq.n - 1)
     }
 

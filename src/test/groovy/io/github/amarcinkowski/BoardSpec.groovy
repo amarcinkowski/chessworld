@@ -58,8 +58,8 @@ class BoardSpec extends Specification {
         expect:
         log.info "\n${board}"
         assert board.toString() == loaded
-        assert board.getPiece(new Square().setA1('b1')).type == PieceType.NONE
-        assert board.getPiece(new Square().setA1('c3')).type == PieceType.KNIGHT
+        assert board.getPiece(new Square('b1')).type == PieceType.NONE
+        assert board.getPiece(new Square('c3')).type == PieceType.KNIGHT
         where:
         language | loaded
         'en'     | "r n b q k b _ r\n" +
