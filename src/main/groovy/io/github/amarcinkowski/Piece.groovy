@@ -1,11 +1,6 @@
 package io.github.amarcinkowski
 
-import groovy.transform.AutoClone
 import groovy.util.logging.Slf4j
-
-/**
- * Created by am on 15.11.17.
- */
 
 @Slf4j
 class Piece {

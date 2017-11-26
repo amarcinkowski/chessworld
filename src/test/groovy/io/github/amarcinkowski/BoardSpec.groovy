@@ -1,15 +1,9 @@
 package io.github.amarcinkowski
 
-import groovy.json.JsonBuilder
 import groovy.util.logging.Slf4j
-import org.slf4j.LoggerFactory
-import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 
-/**
- * Created by am on 16.11.17.
- */
 @Slf4j
 class BoardSpec extends Specification {
 
@@ -58,8 +52,8 @@ class BoardSpec extends Specification {
         expect:
         log.info "\n${board}"
         assert board.toString() == loaded
-        assert board.getPiece(new Square('b1')).type == PieceType.NONE
-        assert board.getPiece(new Square('c3')).type == PieceType.KNIGHT
+        assert board.getPiece(Square1.B1).type == PieceType.NONE
+        assert board.getPiece(Square1.C3).type == PieceType.KNIGHT
         where:
         language | loaded
         'en'     | "r n b q k b _ r\n" +

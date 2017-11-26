@@ -1,8 +1,5 @@
 package io.github.amarcinkowski
 
-/**
- * Created by am on 18.11.17.
- */
 enum Language {
     DEFAULT('en'), ENGLISH('en'), POLISH('pl'), SYMBOL('eo')
 

@@ -7,16 +7,16 @@ import groovy.util.logging.Slf4j
 @ToString
 class Board implements Serializable {
 
-    private final squares = new Square[64]
+    private final squares
     private final List<Piece> pieces = []
 
     Board() {
         pieces = Arrangment.getPieces()
-        squares = Arrangment.getSquares()
+        squares = Square1.values() //Arrangment.getSquares()
     }
 
-    Piece getPiece(Square sq) {
-        pieces.get(sq.n - 1)
+    Piece getPiece(Square1 sq) {
+        pieces.get(sq.ordinal())
     }
 
     // TODO BoardSerializer ?

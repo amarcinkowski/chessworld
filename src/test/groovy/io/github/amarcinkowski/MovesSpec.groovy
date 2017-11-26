@@ -6,9 +6,6 @@ import spock.lang.Unroll
 
 import static io.github.amarcinkowski.PieceType.*;
 
-/**
- * Created by am on 16.11.17.
- */
 @Slf4j
 class MovesSpec extends Specification {
 
@@ -16,21 +13,21 @@ class MovesSpec extends Specification {
     def "move #from #to is valid: #valid"() {
         given:
         def board = new Board()
-        def piece = board.getPiece(new Square(from))
+        def piece = board.getPiece(Square1.valueOf(from.toUpperCase()))
         log.info "$piece $from $to" // TODO pgn? algebraic notation "$pieceWithoutPawns$to"
         expect:
-        assert new Move(board: board, from: new Square(a1: from), to: new Square(a1: to)).isValid() == valid
+        assert new Move(board: board, from: Square1.valueOf(from), to: Square1.valueOf(to)).isValid() == valid
         where:
         from | to   | valid
-        'b2' | 'b3' | true
-        'c2' | 'c3' | true
-        'c2' | 'c4' | true
-        'b2' | 'b4' | true
-        'b3' | 'b2' | false
-        'a1' | 'a3' | false
-        'a3' | 'a5' | false
-        'b1' | 'c1' | false
-        'b1' | 'd3' | false
+        'B2' | 'B3' | true
+        'C2' | 'C3' | true
+        'C2' | 'C4' | true
+        'B2' | 'B4' | true
+        'B3' | 'B2' | false
+        'A1' | 'A3' | false
+        'A3' | 'A5' | false
+        'B1' | 'C1' | false
+        'B1' | 'D3' | false
 
     }
 }

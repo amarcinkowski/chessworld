@@ -6,9 +6,6 @@ import groovy.util.logging.Slf4j
 
 import java.awt.Point
 
-/**
- * Created by am on 15.11.17.
- */
 @Slf4j
 @Builder(builderStrategy = SimpleStrategy)
 class Square {

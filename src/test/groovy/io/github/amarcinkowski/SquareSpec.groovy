@@ -3,9 +3,6 @@ package io.github.amarcinkowski
 import spock.lang.Specification
 import spock.lang.Unroll
 
-/**
- * Created by am on 16.11.17.
- */
 class SquareSpec extends Specification {
 
     @Unroll
