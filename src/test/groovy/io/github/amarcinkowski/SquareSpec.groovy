@@ -1,15 +1,17 @@
 package io.github.amarcinkowski
 
+import groovy.util.logging.Slf4j
 import spock.lang.Specification
 import spock.lang.Unroll
 
+@Slf4j
 class SquareSpec extends Specification {
 
     @Unroll
     def "#n should convert to #x,#y"() {
         expect:
-        def square = new Square(n: n)
-        [x, y] == [square.x, square.y]
+        def square = Square1.find { it.n == n }
+        assert [x, y] == [square.x, square.y]
         where:
         n  | x | y
         1  | 1 | 1
@@ -26,7 +28,8 @@ class SquareSpec extends Specification {
     @Unroll
     def "#x,#y  should convert to #n"() {
         expect:
-        n == Square.xy2n(x, y)
+        def square = Square1.find { it.n == n }
+        assert square.x == x && square.y == y
         where:
         n  | x | y
         1  | 1 | 1
@@ -42,16 +45,16 @@ class SquareSpec extends Specification {
     @Unroll
     def "#a1  should convert to #n"() {
         expect:
-        n == new Square(a1).n
+        assert n == Square1.valueOf(a1).n
         where:
         n  | a1
-        1  | 'a1'
-        2  | 'b1'
-        3  | 'c1'
-        8  | 'h1'
-        9  | 'a2'
-        17 | 'a3'
-        16 | 'h2'
-        64 | 'h8'
+        1  | 'A1'
+        2  | 'B1'
+        3  | 'C1'
+        8  | 'H1'
+        9  | 'A2'
+        17 | 'A3'
+        16 | 'H2'
+        64 | 'H8'
     }
 }

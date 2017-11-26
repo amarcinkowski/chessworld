@@ -12,7 +12,7 @@ class Board implements Serializable {
 
     Board() {
         pieces = Arrangment.getPieces()
-        squares = Square1.values() //Arrangment.getSquares()
+        squares = Square1.values()
     }
 
     Piece getPiece(Square1 sq) {
