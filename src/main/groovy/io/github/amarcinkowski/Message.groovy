@@ -8,27 +8,35 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class Message {
 
+    static locale
+    public static ResourceBundle msgFile
     final static msgs = [:]
 
-    // FIXME XXX is READING all languages messages necessary? -> read just Game.locale msgs
-    static {
-        for (Language lang : Language.values()) {
-            def resource = ResourceBundle.getBundle("message", lang.locale())
-            def keys = resource.keySet()
-            for (String key : keys) {
-                def value = resource.getObject(key)
-                msgs.put(lang.toString() + value, key)
-            }
+    static void language(String language) {
+        locale = new Locale(language.toLowerCase(), language.toUpperCase())
+        loadMsgs()
+    }
+
+    def static loadMsgs() {
+        msgFile = ResourceBundle.getBundle("message", locale)
+        def keys = msgFile.keySet()
+        for (String key : keys) {
+            def value = msgFile.getObject(key)
+            msgs.put(value, key)
         }
     }
 
-    static String byValue(String value) {
-        msgs.get(value)
+    static String byValue(Character value) {
+        msgs.get(value.toString())
     }
 
     static String get(String... params) {
-        def key = params.findAll { 'null' != it }.join('.') // 'king', 'white' -> 'king.white' TODO king.white -> white.king
-        ResourceBundle.getBundle("message", Game.locale).getObject(key)
+        def key = params.findAll { 'null' != it }.join('.')
+        log.trace "msg key $key"
+        (key == '' || key == null) ?
+                null
+                :
+                msgFile.getObject(key) ?: ' '
     }
 
 }

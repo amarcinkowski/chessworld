@@ -30,7 +30,7 @@ class Board implements Serializable {
 
     @Override
     String toString() {
-        pieces.collate(8)*.join(' ').reverse().join('\n')
+        pieces.collate(8)*.join(' ').reverse().join('\n').replaceAll('null', Message.get('none'))
     }
 
 }

@@ -1,23 +1,16 @@
 package io.github.amarcinkowski
 
 class Game {
-    static locale = Language.DEFAULT.locale()
 
     Player white
     Player black
-    Board board = new Board()
+    Board board
     boolean whiteNext = true
 
     Game() {
+        Message.language(Language.DEFAULT.toString())
+        board = new Board()
         println board
-    }
-
-    static String language() {
-        locale.getLanguage().toString()
-    }
-
-    static void language(String language) {
-        Game.locale = new Locale(language.toLowerCase(), language.toUpperCase())
     }
 
     public static void main(String[] args) {

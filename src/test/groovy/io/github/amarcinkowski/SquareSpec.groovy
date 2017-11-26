@@ -8,8 +8,9 @@ import spock.lang.Unroll
 class SquareSpec extends Specification {
 
     @Unroll
-    def "#n should convert to #x,#y"() {
+    def "Square #n should convert to #x,#y"() {
         expect:
+        log.debug "Square $n -> $x, $y"
         def square = Square.find { it.n == n }
         assert [x, y] == [square.x, square.y]
         where:
@@ -28,6 +29,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#x,#y  should convert to #n"() {
         expect:
+        log.debug "Square $x, $y -> $n"
         def square = Square.find { it.n == n }
         assert square.x == x && square.y == y
         where:
@@ -45,6 +47,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#a1  should convert to #n"() {
         expect:
+        log.debug "Square $a1 -> $n"
         assert n == Square.valueOf(a1).n
         where:
         n  | a1

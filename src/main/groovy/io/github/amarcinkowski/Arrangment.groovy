@@ -19,7 +19,7 @@ class Arrangment {
             pieces.add(new Piece(type: PieceType.PAWN, color: WHITE))
         }
         32.times {
-            pieces.add(new Piece(type: PieceType.NONE))
+            pieces.add(null/*new Piece()*/)
         }
         8.times {
             pieces.add(new Piece(type: PieceType.PAWN, color: BLACK))

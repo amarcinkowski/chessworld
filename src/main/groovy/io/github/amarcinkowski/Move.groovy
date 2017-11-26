@@ -19,7 +19,7 @@ class Move {
     boolean isValid() {
         def p = board.getPiece(from)
 
-        p.type == PAWN && (
+        p?.type == PAWN && (
                 // 1-forward
                 moveCoordinate(from, to) == [0, 1]
                         // 2-forward from row 2
