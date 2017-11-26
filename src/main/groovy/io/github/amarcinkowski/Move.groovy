@@ -8,15 +8,15 @@ import static io.github.amarcinkowski.PieceType.PAWN;
 class Move {
 
     Board board
-    Square1 from
-    Square1 to
+    Square from
+    Square to
 
     int[] moveCoordinate(from, to) {
         return [to.x - from.x, to.y - from.y]
     }
 
     boolean isValid() {
-        def p = board.getPiece(getFrom())
+        def p = board.getPiece(from)
 
         p.type == PAWN && (
                 // 1-forward

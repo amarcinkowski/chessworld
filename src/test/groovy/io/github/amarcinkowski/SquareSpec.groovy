@@ -10,7 +10,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#n should convert to #x,#y"() {
         expect:
-        def square = Square1.find { it.n == n }
+        def square = Square.find { it.n == n }
         assert [x, y] == [square.x, square.y]
         where:
         n  | x | y
@@ -28,7 +28,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#x,#y  should convert to #n"() {
         expect:
-        def square = Square1.find { it.n == n }
+        def square = Square.find { it.n == n }
         assert square.x == x && square.y == y
         where:
         n  | x | y
@@ -45,7 +45,7 @@ class SquareSpec extends Specification {
     @Unroll
     def "#a1  should convert to #n"() {
         expect:
-        assert n == Square1.valueOf(a1).n
+        assert n == Square.valueOf(a1).n
         where:
         n  | a1
         1  | 'A1'

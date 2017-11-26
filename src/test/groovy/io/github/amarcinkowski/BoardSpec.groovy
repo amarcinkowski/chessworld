@@ -47,13 +47,13 @@ class BoardSpec extends Specification {
     @Unroll
     def "Board read from #language should be read properly"() {
         given:
-        Game.locale = new Locale(language.toLowerCase(), language.toUpperCase())
-        def board = new Board().fromString(loaded)
+        Game.locale(language)
+        def board = new Board(loaded)
         expect:
         log.info "\n${board}"
         assert board.toString() == loaded
-        assert board.getPiece(Square1.B1).type == PieceType.NONE
-        assert board.getPiece(Square1.C3).type == PieceType.KNIGHT
+        assert board.getPiece(Square.B1).type == PieceType.NONE
+        assert board.getPiece(Square.C3).type == PieceType.KNIGHT
         where:
         language | loaded
         'en'     | "r n b q k b _ r\n" +

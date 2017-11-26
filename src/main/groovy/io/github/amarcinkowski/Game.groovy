@@ -16,6 +16,10 @@ class Game {
         locale.getLanguage().toString()
     }
 
+    static void locale(String language) {
+        Game.locale = new Locale(language.toLowerCase(), language.toUpperCase())
+    }
+
     public static void main(String[] args) {
         new Game()
     }

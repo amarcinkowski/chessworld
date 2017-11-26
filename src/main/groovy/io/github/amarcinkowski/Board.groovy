@@ -7,33 +7,28 @@ import groovy.util.logging.Slf4j
 @ToString
 class Board implements Serializable {
 
-    private final squares
+    // rm squares?
+    private final squares = Square.values()
     private final List<Piece> pieces = []
 
     Board() {
         pieces = Arrangment.getPieces()
-        squares = Square1.values()
     }
 
-    Piece getPiece(Square1 sq) {
+    Board(String notation) {
+        notation.replaceAll(' ', '').split('\n').reverse().join('').toCharArray().each {
+            pieces.add(Piece.byNotation(it))
+        }
+    }
+
+    Piece getPiece(Square sq) {
         pieces.get(sq.ordinal())
     }
 
-    // TODO BoardSerializer ?
     @Override
     String toString() {
         // group by 8 elements jointed by new line / replace null with NONE
         pieces.collate(8)*.join(' ').reverse().join('\n')
     }
-
-    // TODO BoardBuilder ? BoardSerializer ?
-    Board fromString(String board) {
-        pieces.clear()
-        char[] notation = board.replaceAll(' ', '').split('\n').reverse().join('').toCharArray()
-        notation.each { pieces.add(Piece.byNotation(it)) }
-        log.debug "Loaded: " + toString()
-        this
-    }
-
 
 }
