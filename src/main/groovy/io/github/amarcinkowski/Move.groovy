@@ -12,7 +12,8 @@ class Move {
     Square to
 
     int[] moveCoordinate(from, to) {
-        return [to.x - from.x, to.y - from.y]
+        int direction = board.getPiece(from).color.direction
+        [to.x - from.x, (to.y - from.y) * direction]
     }
 
     boolean isValid() {
@@ -22,7 +23,7 @@ class Move {
                 // 1-forward
                 moveCoordinate(from, to) == [0, 1]
                         // 2-forward from row 2
-                        || moveCoordinate(from, to) == [0, 2] && from.y == 2)
+                        || moveCoordinate(from, to) == [0, 2] && from.y == p.color.pawnRow)
         // 1-diagonal with capture
 //        ||
     }

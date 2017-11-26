@@ -7,8 +7,6 @@ import groovy.util.logging.Slf4j
 @ToString
 class Board implements Serializable {
 
-    // rm squares?
-    private final squares = Square.values()
     private final List<Piece> pieces = []
 
     Board() {
@@ -27,7 +25,6 @@ class Board implements Serializable {
 
     @Override
     String toString() {
-        // group by 8 elements jointed by new line / replace null with NONE
         pieces.collate(8)*.join(' ').reverse().join('\n')
     }
 
