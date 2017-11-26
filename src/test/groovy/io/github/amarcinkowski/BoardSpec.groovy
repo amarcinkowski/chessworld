@@ -11,10 +11,10 @@ class BoardSpec extends Specification {
     @Unroll
     def "Board should look like this in #language notation"() {
         given:
-        Game.locale = new Locale(language.toLowerCase(), language.toUpperCase())
+        Game.language(language)
         def board = new Board()
         expect:
-        log.info "\n${board}"
+        log.info "\n${language}\n${board}"
         assert board.toString() == expected
         where:
         language | expected
@@ -47,7 +47,7 @@ class BoardSpec extends Specification {
     @Unroll
     def "Board read from #language should be read properly"() {
         given:
-        Game.locale(language)
+        Game.language(language)
         def board = new Board(loaded)
         expect:
         log.info "\n${board}"
