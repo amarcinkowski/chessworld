@@ -11,8 +11,6 @@ class MovesSpec extends Specification {
     def "move #from #to is valid: #valid"() {
         given:
         def board = new Board()
-        def piece = board.getPiece(Square.valueOf(from.toUpperCase()))
-        log.info "$piece $from $to" // TODO pgn? algebraic notation "$pieceWithoutPawns$to"
         expect:
         assert new Move(board: board, from: Square.valueOf(from), to: Square.valueOf(to)).isValid() == valid
         where:
@@ -37,6 +35,32 @@ class MovesSpec extends Specification {
         'A8' | 'A6' | false
         'B7' | 'C7' | false
         'B7' | 'D7' | false
+    }
 
+    @Unroll
+    def "with this game move #from #to is valid: #valid"() {
+        given:
+        Message.language('eo')
+        def init = "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
+                "♟ ♟ ♟ ♟ ∅ ♟ ♟ ♟\n" +
+                "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +
+                "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +
+                "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +
+                "∅ ∅ ♘ ∅ ♟ ∅ ∅ ∅\n" +
+                "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙\n" +
+                "♖ ∅ ♗ ♕ ♔ ♗ ♘ ♖"
+        def board = new Board(init)
+        expect:
+        log.info "\n${board}"
+        assert new Move(board: board, from: Square.valueOf(from), to: Square.valueOf(to)).isValid() == valid
+        where:
+        from | to   | valid
+        // white
+        'B2' | 'B3' | true
+        'C2' | 'C3' | false
+        'E2' | 'E3' | false
+        'D2' | 'E3' | true
+        'F2' | 'E3' | true
+        'F2' | 'G3' | false
     }
 }

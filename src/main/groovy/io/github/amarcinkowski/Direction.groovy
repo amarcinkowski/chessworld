@@ -1,8 +1,9 @@
 package io.github.amarcinkowski
 
-/**
- * Created by am on 26.11.17.
- */
+import groovy.util.logging.Slf4j
+import static Math.*
+
+@Slf4j
 enum Direction {
 
     NW(-1, 1), N(0, 1), NE(1, 1),
@@ -18,4 +19,5 @@ enum Direction {
         this.xstep = xstep
         this.ystep = ystep
     }
+
 }

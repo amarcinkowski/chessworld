@@ -13,14 +13,14 @@ class Generator {
             for(int x in 1..8) {
                 println """${CoordinateUtil.x2a(x)}${y} (${CoordinateUtil.xy2n(x,y)}, [$x,$y],
                             [ /* squares in directions from ${CoordinateUtil.x2a(x)}${y}*/
-                            N:${CoordinateUtil.inDirection(N,x,y)},
-                            W:${CoordinateUtil.inDirection(W,x,y)},
-                            S:${CoordinateUtil.inDirection(S,x,y)},
-                            E:${CoordinateUtil.inDirection(E,x,y)},
-                            NW:${CoordinateUtil.inDirection(NW,x,y)},
-                            SW:${CoordinateUtil.inDirection(SW,x,y)},
-                            SE:${CoordinateUtil.inDirection(SE,x,y)},
-                            NE:${CoordinateUtil.inDirection(NE,x,y)}
+                            N:${CoordinateUtil.possibleMoves(N,x,y)},
+                            W:${CoordinateUtil.possibleMoves(W,x,y)},
+                            S:${CoordinateUtil.possibleMoves(S,x,y)},
+                            E:${CoordinateUtil.possibleMoves(E,x,y)},
+                            NW:${CoordinateUtil.possibleMoves(NW,x,y)},
+                            SW:${CoordinateUtil.possibleMoves(SW,x,y)},
+                            SE:${CoordinateUtil.possibleMoves(SE,x,y)},
+                            NE:${CoordinateUtil.possibleMoves(NE,x,y)}
                             ] as Map),
 """
             }

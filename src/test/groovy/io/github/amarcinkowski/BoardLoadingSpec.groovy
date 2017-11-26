@@ -15,7 +15,6 @@ class BoardLoadingSpec extends Specification {
         expect:
         log.info "\n${board}"
         assert board.toString() == loaded
-        log.info "x" + (board.getPiece(Square.B1).type == (PieceType) null) + "x"
         assert board.getPiece(Square.C3).type == PieceType.KNIGHT
         where:
         language | loaded
