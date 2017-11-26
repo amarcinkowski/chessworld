@@ -10,6 +10,7 @@ class Message {
 
     final static msgs = [:]
 
+    // FIXME XXX is READING all languages messages necessary? -> read just Game.locale msgs
     static {
         for (Language lang : Language.values()) {
             def resource = ResourceBundle.getBundle("message", lang.locale())

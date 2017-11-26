@@ -21,7 +21,7 @@ class Piece {
 
     @Override
     String toString() {
-        Message.get("${type}", "${color}")
+        Message.get("${color}", "${type}")
     }
 
 }

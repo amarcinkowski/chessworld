@@ -1,18 +1,23 @@
 package io.github.amarcinkowski
 
-import groovy.transform.ToString
 import groovy.util.logging.Slf4j
 
 @Slf4j
-@ToString
 class Board implements Serializable {
 
     private final List<Piece> pieces = []
 
+    /**
+     * init board with pieces starting position
+     */
     Board() {
         pieces = Arrangment.getPieces()
     }
 
+    /**
+     * read board from notation string
+     * @param notation
+     */
     Board(String notation) {
         notation.replaceAll(' ', '').split('\n').reverse().join('').toCharArray().each {
             pieces.add(Piece.byNotation(it))
