@@ -26,7 +26,7 @@ class Move {
 
         p?.type == PAWN && (
                 // 1-forward
-                move(from, to) == [0, 1] && ( t == null || t?.type == PieceType.NULL) // means square 'to' on the board doesn't have a type, so it's empty
+                move(from, to) == [0, 1] && t == null  // means square 'to' on the board doesn't have a type, so it's empty
                         // 2-forward from row 2
                         || move(from, to) == [0, 2] && from.y == p.color.pawnRow // can go by 2 forward from 2 for white and 7 for black
                         // 1-diagonal with capture

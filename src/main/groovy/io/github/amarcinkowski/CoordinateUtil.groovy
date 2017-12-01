@@ -14,29 +14,29 @@ class CoordinateUtil {
         (y - 1) * 8 + x
     }
 
-    static String[] possibleMoves(Direction direction, int x, int y) {
-        def ret = []
-        for (int stepSize in 1..7) {
-            def newx = x + direction.xstep * stepSize
-            def newy = y + direction.ystep * stepSize
-            if (newx > 8 || newx < 1) break
-            if (newy > 8 || newy < 1) break
-            ret += "'${x2a(newx)}$newy'"
-        }
-        ret
-    }
-
-    static int normalize(int n) {
-        n == 0 ? 0 : (n / n)
-    }
-
     static Direction direction(Square from, Square to) {
-        def x = CoordinateUtil.normalize(to.x - from.x)
-        def y = CoordinateUtil.normalize(to.y - from.y)
-        Direction.values().find { it -> x == it.xstep && y == it.ystep }
+        def deltax = to.x - from.x
+        def deltay = to.y - from.y
+        def normal = Math.max(Math.abs(deltax), Math.abs(deltay))
+        if (normal != 0) {
+            deltax /= normal
+            deltay /= normal
+        }
+
+        Direction.values().find { it -> deltax == it.xstep && deltay == it.ystep }
     }
 
+
+    // // FIXME STEP FOR K moves SHOULD BE 1 not 2
     static int step(Square from, Square to) {
-        Math.max(Math.abs(to.x - from.x), Math.abs(to.y - from.y))
+        def deltax = Math.abs(to.x - from.x)
+        def deltay = Math.abs(to.y - from.y)
+        if (deltax == 2 && deltay == 1 || deltay == 2 && deltax == 1) {
+            return 1
+        }
+        if (deltax == deltay) {
+            return deltax
+        }
+        Math.max(deltax, deltay)
     }
 }

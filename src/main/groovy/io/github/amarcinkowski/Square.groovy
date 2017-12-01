@@ -3,15 +3,33 @@ package io.github.amarcinkowski
 import groovy.util.logging.Slf4j
 import static io.github.amarcinkowski.Direction.*;
 
+
 /**
  * Used to generate enum below
  */
 class Generator {
 
-        def static allDirections(int x, int y) {
+        private static String[] possibleMoves(Direction direction, int x, int y) {
+                def ret = []
+                for (int stepSize in 1..7) {
+                        if ([NNE, NNW, SSE, SSW, NEE, NWW, SEE, SWW].contains(direction)) {
+                                if (stepSize != 2) {
+                                        continue // leave only proper Knight moves
+                                }
+                        }
+                        def newx = x + direction.xstep * stepSize
+                        def newy = y + (int) (direction.ystep * stepSize)
+                        if (newx > 8 || newx < 1) break
+                        if (newy > 8 || newy < 1) break
+                        ret += "'${CoordinateUtil.x2a(newx)}$newy'"
+                }
+                ret
+        }
+
+        private static allDirections(int x, int y) {
                 def s = ""
                 for (Direction d : Direction.values()) {
-                        s += "\n\t\t$d:${CoordinateUtil.possibleMoves(d, x, y)},"
+                        s += "\n\t\t$d:${possibleMoves(d, x, y)},"
                 }
                 s
         }

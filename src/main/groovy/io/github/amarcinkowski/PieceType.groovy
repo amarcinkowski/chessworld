@@ -17,7 +17,7 @@ package io.github.amarcinkowski
  U+2205 ∅               NONE
  */
 public enum PieceType {
-    KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN, NULL
+    KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN
 
     @Override
     String toString() {
