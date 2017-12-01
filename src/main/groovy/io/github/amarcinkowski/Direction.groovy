@@ -20,10 +20,10 @@ SWW(-1, -0.5),              SEE(1, -0.5),
 
       SSW(-0.5,-1),   SSE(0.5,-1)
 
-    public int xstep
-    public int ystep
+    public float xstep
+    public float ystep
 
-    private Direction(int xstep, int ystep) {
+    private Direction(float xstep, float ystep) {
         this.xstep = xstep
         this.ystep = ystep
     }
