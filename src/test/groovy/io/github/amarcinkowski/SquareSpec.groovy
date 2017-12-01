@@ -3,6 +3,7 @@ package io.github.amarcinkowski
 import groovy.util.logging.Slf4j
 import spock.lang.Specification
 import spock.lang.Unroll
+import static io.github.amarcinkowski.Direction.*
 
 @Slf4j
 class SquareSpec extends Specification {
@@ -59,5 +60,22 @@ class SquareSpec extends Specification {
         17 | 'A3'
         16 | 'H2'
         64 | 'H8'
+    }
+
+    @Unroll
+    def "get path"() {
+        expect:
+        assert Square.valueOf(from).path(direction, steps, withLast) == path
+        where:
+        from | direction | steps | withLast | path
+        'A1' | N         | 1     | false    | []
+        'A1' | N         | 1     | true     | ['A2']
+        'A1' | N         | 2     | false    | ['A2']
+        'A1' | N         | 2     | true     | ['A2', 'A3']
+    }
+
+    @Unroll
+    def "check path"() {
+
     }
 }

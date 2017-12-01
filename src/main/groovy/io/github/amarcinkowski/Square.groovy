@@ -1328,16 +1328,42 @@ public enum Square {
                   SSE: [],
                 ] as Map),
 
+
         public int n
         public int x
         public int y
         private Map<Direction, String[]> map
+
+        private List<String> squaresInDirection(Direction direction) {
+                def key = direction.toString()
+                log.debug "$key ${map.get(key)}"
+                map.get(key)
+        }
+
+        // PATH TO
+        def path(Direction direction, int step, boolean withLast = false) {
+                def path = squaresInDirection(direction)
+                def lastElementIndex = step - (withLast ? 1 : 2)
+                if (path == null || lastElementIndex < 0) {
+                        return []
+                } else {
+                        return path[0..lastElementIndex] ?: []
+                }
+        }
+
+        def Square to(Direction direction, int step) {
+                Square.valueOf(squaresInDirection(direction)[step - 1])
+        }
 
         private Square(int n, ArrayList<Integer> xy, Map<Direction, String[]> map) {
                 this.n = n
                 this.x = xy[0]
                 this.y = xy[1]
                 this.map = map
+        }
+
+        public static byXY(int x, int y) {
+                Square.values().find { it.x == x && it.y == y }
         }
 
         @Override
