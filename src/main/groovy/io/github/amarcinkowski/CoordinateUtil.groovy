@@ -6,8 +6,8 @@ class CoordinateUtil {
         (int) c - (int) 'A' + 1
     }
 
-    static char x2a(int x) {
-        (char) ((int) 'A' + x - 1)
+    static char x2a(double x) {
+        (char) ((int) 'A' + (int) (x - 1))
     }
 
     static int xy2n(int x, int y) {

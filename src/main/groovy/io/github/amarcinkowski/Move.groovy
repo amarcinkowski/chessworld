@@ -2,10 +2,7 @@ package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
 
-import static io.github.amarcinkowski.PieceType.PAWN;
-import static io.github.amarcinkowski.Direction.*;
-import static io.github.amarcinkowski.Color.*;
-
+import static io.github.amarcinkowski.PieceType.PAWN
 
 @Slf4j
 class Move {
@@ -14,24 +11,36 @@ class Move {
     Square from
     Square to
 
-    int[] move(from, to) {
-        int direction = board.getPiece(from).color.direction
-        [to.x - from.x, (to.y - from.y) * direction]
+    private boolean capture() {
+        def p = board.getPiece(from)
+        def t = board.getPiece(to)
+        Piece.opposite(p, t)
+    }
+
+    private boolean empty() {
+        def t = board.getPiece(to)
+        t == null
+    }
+
+    private boolean is(PieceType type) {
+        def p = board.getPiece(from)
+        p?.type == type
+    }
+
+    private boolean distance(int stepSize) {
+        def step = CoordinateUtil.step(from, to)
+        step == stepSize
     }
 
     boolean isValid() {
         def p = board.getPiece(from)
-        def t = board.getPiece(to)
         def direction = CoordinateUtil.direction(from, to)
 
-        p?.type == PAWN && (
+        is(PAWN) && (
                 // 1-forward
-                move(from, to) == [0, 1] && t == null  // means square 'to' on the board doesn't have a type, so it's empty
-                        // 2-forward from row 2
-                        || move(from, to) == [0, 2] && from.y == p.color.pawnRow // can go by 2 forward from 2 for white and 7 for black
-                        // 1-diagonal with capture
-                        || (p?.color == WHITE && (direction == NW || direction == NE) && t?.color == BLACK)
-                        || (p?.color == BLACK && (direction == SE || direction == SW) && t?.color == WHITE)//
+                direction == p.color.forward && distance(1) && empty() // FIXME TODO direction == p.color.forward -> boolean movingForward(p) { }
+                        || direction == p.color.forward && distance(2) && from.y == p.color.pawnRow // can go by 2 forward from 2 for white and 7 for black
+                        || (p.color.forwardDiagonal.contains(direction) && capture() && distance(1))
         )
     }
 }

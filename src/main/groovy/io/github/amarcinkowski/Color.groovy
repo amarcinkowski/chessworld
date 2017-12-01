@@ -1,13 +1,17 @@
 package io.github.amarcinkowski
 
-enum Color {
-    BLACK(-1, 7), WHITE(+1, 2), NONE(0, 0) // TODO remove color none (pieceType null)
+import static io.github.amarcinkowski.Direction.*
 
-    public final int direction
+enum Color {
+    BLACK(S, [SW, SE], 7), WHITE(N, [NW, NE], 2)
+
+    public final Direction forward
+    public final List<Direction> forwardDiagonal
     public final int pawnRow
 
-    public Color(int direction, int pawnRow) {
-        this.direction = direction
+    public Color(Direction forward, List<Direction> fotwardDiagonal, int pawnRow) {
+        this.forward = forward
+        this.forwardDiagonal = fotwardDiagonal
         this.pawnRow = pawnRow
     }
 
