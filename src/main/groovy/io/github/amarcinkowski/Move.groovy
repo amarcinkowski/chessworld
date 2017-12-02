@@ -90,6 +90,10 @@ class Move {
         isInDirection(HORIZONTAL, VERTICAL)
     }
 
+    private boolean isHorizontalVerticalDiagonal() {
+        isInDirection(HORIZONTAL, VERTICAL, DIAGONAL)
+    }
+
     private boolean isDiagonal() {
         isInDirection(DIAGONAL)
     }
@@ -122,27 +126,38 @@ class Move {
         distance(1)
     }
 
+    private boolean isDoubleShortDistance() {
+        distance(2)
+    }
+
+    private boolean isValidPawnMove() {
+        pawn && (forward && shortDistance && empty
+                || forward && doubleShortDistance && fromPawnRow
+                || forwardDiagonal && shortDistance && capture
+        )
+    }
+
+    private boolean isValidRookMove() {
+        rook && horizontalOrVertical && clearWay && emptyOrCapture
+    }
+
+    private boolean isValidKnightMove() {
+        knight && jump && emptyOrCapture
+    }
+
+    private boolean isValidBishopMove() {
+        bishop && diagonal && clearWay && emptyOrCapture
+    }
+
+    private boolean isValidKingMove() {
+        king && (horizontalOrVertical || diagonal) && emptyOrCapture && shortDistance
+    }
+
+    private boolean isValidQueenMove() {
+        queen && (horizontalOrVertical || diagonal) && emptyOrCapture
+    }
+
     boolean isValid() {
-        pawn && (
-                forward && distance(1) && empty
-                        || forward && distance(2) && fromPawnRow
-                        || forwardDiagonal && capture && shortDistance
-        ) || rook && (
-                horizontalOrVertical
-                        && clearWay
-                        && emptyOrCapture
-        ) || knight && (
-                jump
-                        && emptyOrCapture
-        ) || bishop && (
-                diagonal
-                        && clearWay
-                        && emptyOrCapture
-        ) || king && (
-                (horizontalOrVertical || diagonal)
-                        && emptyOrCapture && shortDistance
-        ) || queen && (
-                (horizontalOrVertical || diagonal)
-                        && emptyOrCapture)
+        validPawnMove || validRookMove || validKnightMove || validBishopMove || validKingMove || validQueenMove
     }
 }
