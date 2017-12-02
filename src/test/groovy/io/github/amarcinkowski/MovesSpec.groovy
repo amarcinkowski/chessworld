@@ -1,6 +1,7 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.notation.BoardNotation
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -52,7 +53,7 @@ class MovesSpec extends Specification {
                 "∅ ∅ ♘ ∅ ♟ ∅ ∅ ∅\n" +
                 "♙ ♙ ♙ ♙ ♙ ♙ ♙ ∅\n" +
                 "♖ ∅ ♗ ♕ ♔ ♗ ♘ ♖"
-        def board = new Board(init)
+        def board = BoardNotation.valueOf(init)
         expect:
         log.debug "\n${board}"
         assert new Move(board: board, from: Square.valueOf(from), to: Square.valueOf(to)).isValid() == valid

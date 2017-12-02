@@ -15,6 +15,10 @@ package io.github.amarcinkowski
  U+265E	♞	e2 99 9e	BLACK CHESS KNIGHT
  U+265F	♟	e2 99 9f	BLACK CHESS PAWN
  U+2205 ∅               NONE
+ TODO null replace mod 2
+ x every second null should be white black
+ 9632	25A0	 	BLACK SQUARE
+ 9633	25A1	 	WHITE SQUARE
  */
 public enum PieceType {
     KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN

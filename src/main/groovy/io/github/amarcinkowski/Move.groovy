@@ -2,6 +2,7 @@ package io.github.amarcinkowski
 
 import groovy.transform.builder.Builder
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.utils.CoordinateUtil
 
 import static io.github.amarcinkowski.PieceType.*
 import static io.github.amarcinkowski.DirectionType.*

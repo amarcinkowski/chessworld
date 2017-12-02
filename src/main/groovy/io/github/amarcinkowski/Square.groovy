@@ -1,6 +1,8 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.utils.CoordinateUtil
+
 import static io.github.amarcinkowski.Direction.*;
 
 

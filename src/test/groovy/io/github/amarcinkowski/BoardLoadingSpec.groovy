@@ -1,6 +1,7 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.notation.BoardNotation
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -11,9 +12,9 @@ class BoardLoadingSpec extends Specification {
     def "Board read from #language should be read properly"() {
         given:
         Message.language(language)
-        def board = new Board(loaded)
+        def board = BoardNotation.valueOf(loaded)
         expect:
-        log.info "\n${board}"
+        log.debug "\n${board}"
         assert board.toString() == loaded
         assert board.getPiece(Square.C3).type == PieceType.KNIGHT
         where:
