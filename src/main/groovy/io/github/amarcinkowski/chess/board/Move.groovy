@@ -23,7 +23,7 @@ class Move {
         CoordinateUtil.step(from, to)
     }
 
-    def getSteps() {
+    def getIntermediateSquares() {
         from.path(direction, step)
     }
 
@@ -37,12 +37,12 @@ class Move {
 
     private int getClearSquaresCount() {
         int emptySquaresOnPath = 0
-        steps.each { if (board.getPiece(Square.valueOf(it)) == null) emptySquaresOnPath++ }
+        intermediateSquares.each { if (board.getPiece(Square.valueOf(it)) == null) emptySquaresOnPath++ }
         emptySquaresOnPath
     }
 
     private boolean isClearWay() {
-        steps.size() == clearSquaresCount
+        intermediateSquares.size() == clearSquaresCount
     }
 
     private boolean isCapture() {
