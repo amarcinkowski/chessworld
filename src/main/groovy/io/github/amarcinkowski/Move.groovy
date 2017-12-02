@@ -46,8 +46,7 @@ class Move {
     }
 
     private boolean isCapture() {
-        movedPiece?.color == Color.BLACK && targetPiece?.color == Color.WHITE ||
-                movedPiece?.color == Color.WHITE && targetPiece?.color == Color.BLACK
+        Color.opposite(movedPiece?.color, targetPiece?.color)
     }
 
     private boolean isEmptyOrCapture() {
@@ -63,9 +62,7 @@ class Move {
     }
 
     private boolean isInDirection(DirectionType[] directionTypes) {
-        pawn ? isInPawnDirection(directionTypes.first())
-                :
-                directionTypes.collect { it.directions }.sum().contains(direction)
+        directionTypes.collect { it.directions }.sum().contains(direction)
     }
 
     private boolean is(PieceType type) {
@@ -81,11 +78,11 @@ class Move {
     }
 
     private boolean isForward() {
-        isInDirection(FORWARD)
+        isInPawnDirection(FORWARD)
     }
 
     private boolean isForwardDiagonal() {
-        isInDirection(FORWARD_DIAGONAL)
+        isInPawnDirection(FORWARD_DIAGONAL)
     }
 
     private boolean isJump() {

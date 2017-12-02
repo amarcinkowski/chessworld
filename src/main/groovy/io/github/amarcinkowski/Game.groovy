@@ -10,7 +10,6 @@ class Game {
     Game() {
         Message.language(Language.DEFAULT.toString())
         board = new Board()
-        println board
     }
 
     public static void main(String[] args) {

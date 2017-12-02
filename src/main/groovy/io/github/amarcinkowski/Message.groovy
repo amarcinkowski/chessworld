@@ -12,12 +12,12 @@ class Message {
     public static ResourceBundle msgFile
     final static msgs = [:]
 
-    static void language(String language) {
+    static language(String language) {
         locale = new Locale(language.toLowerCase(), language.toUpperCase())
         loadMsgs()
     }
 
-    def static loadMsgs() {
+    static loadMsgs() {
         msgFile = ResourceBundle.getBundle("message", locale)
         def keys = msgFile.keySet()
         for (String key : keys) {
