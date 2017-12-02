@@ -10,7 +10,7 @@ enum Color {
     }
 
     static opposite(Color c1, Color c2) {
-        c1 == BLACK && c2 == WHITE || c1 == WHITE && c2 == black
+        c1 == BLACK && c2 == WHITE || c1 == WHITE && c2 == BLACK
     }
 
     @Override
