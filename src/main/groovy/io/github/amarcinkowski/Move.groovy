@@ -34,73 +34,115 @@ class Move {
         board.getPiece(to)
     }
 
-    private boolean clearWay() {
+    private boolean isClearWay() {
         int emptySquaresOnPath = 0
         steps.each { if (board.getPiece(Square.valueOf(it)) == null) emptySquaresOnPath++ }
         steps.size() == emptySquaresOnPath
     }
 
-    private boolean capture() {
+    private boolean isCapture() {
         Piece.opposite(movedPiece, targetPiece)
     }
 
-    private boolean emptyOrCapture() {
-        empty() || capture()
+    private boolean isEmptyOrCapture() {
+        empty || capture
     }
 
-    private boolean empty() {
+    private boolean isEmpty() {
         targetPiece == null
     }
 
     private boolean isInPawnDirection(DirectionType directionType) {
-        def key = movedPiece?.color.toString().toUpperCase() + "_" + directionType
-        def direction = CoordinateUtil.direction(from, to)
-        DirectionType.valueOf(key).directions.contains(direction)
+        directionType.byColor(movedPiece?.color).directions.contains(direction)
     }
 
     private boolean isInDirection(DirectionType[] directionTypes) {
-        if (is(PAWN)) {
-            return isInPawnDirection(directionTypes.first())
-        }
-        def direction = CoordinateUtil.direction(from, to)
-        def directions = directionTypes.collect { it.directions }.sum()
-        directions.contains(direction)
+        pawn ? isInPawnDirection(directionTypes.first())
+                :
+                directionTypes.collect { it.directions }.sum().contains(direction)
     }
 
     private boolean is(PieceType type) {
-        def p = board.getPiece(from)
-        p?.type == type
+        movedPiece?.type == type
     }
 
     private boolean distance(int stepSize) {
-        def step = CoordinateUtil.step(from, to)
         step == stepSize
     }
 
-    private boolean isPawnRow() {
-        def p = board.getPiece(from)
-        from.y == p.color.pawnRow
+    private boolean isFromPawnRow() {
+        from.y == movedPiece?.color.pawnRow
+    }
+
+    private boolean isForward() {
+        isInDirection(FORWARD)
+    }
+
+    private boolean isForwardDiagonal() {
+        isInDirection(FORWARD_DIAGONAL)
+    }
+
+    private boolean isJump() {
+        isInDirection(KNIGHT_JUMP)
+    }
+
+    private boolean isHorizontalOrVertical() {
+        isInDirection(HORIZONTAL, VERTICAL)
+    }
+
+    private boolean isDiagonal() {
+        isInDirection(DIAGONAL)
+    }
+
+    private boolean isPawn() {
+        is(PAWN)
+    }
+
+    private boolean isRook() {
+        is(ROOK)
+    }
+
+    private boolean isKnight() {
+        is(KNIGHT)
+    }
+
+    private boolean isBishop() {
+        is(BISHOP)
+    }
+
+    private boolean isKing() {
+        is(KING)
+    }
+
+    private boolean isQueen() {
+        is(QUEEN)
+    }
+
+    private boolean isShortDistance() {
+        distance(1)
     }
 
     boolean isValid() {
-        is(PAWN) && (
-                isInDirection(FORWARD) && distance(1) && empty()
-                        || isInDirection(FORWARD) && distance(2) && isPawnRow()
-                        || (isInDirection(FORWARD_DIAGONAL) && capture() && distance(1))
-        ) || is(ROOK) && (
-                isInDirection(HORIZONTAL, VERTICAL)
-                        && clearWay()
-                        && emptyOrCapture()
-        ) || is(KNIGHT) && (
-                isInDirection(KNIGHT_JUMP)
-                        && emptyOrCapture()
-        ) || is(BISHOP) && (
-                isInDirection(DIAGONAL)
-                        && clearWay()
-                        && emptyOrCapture()
-        ) || is(KING) && (
-                isInDirection(HORIZONTAL, VERTICAL, DIAGONAL)
-                        && emptyOrCapture()
-        )
+        pawn && (
+                forward && distance(1) && empty
+                        || forward && distance(2) && fromPawnRow
+                        || forwardDiagonal && capture && shortDistance
+        ) || rook && (
+                horizontalOrVertical
+                        && clearWay
+                        && emptyOrCapture
+        ) || knight && (
+                jump
+                        && emptyOrCapture
+        ) || bishop && (
+                diagonal
+                        && clearWay
+                        && emptyOrCapture
+        ) || king && (
+                (horizontalOrVertical || diagonal)
+                        && emptyOrCapture && shortDistance
+        ) || queen && (
+                (horizontalOrVertical || diagonal)
+                        && emptyOrCapture)
     }
 }
