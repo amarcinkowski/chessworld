@@ -1,26 +1,47 @@
 package io.github.amarcinkowski
 
+import groovy.transform.builder.Builder
 import groovy.util.logging.Slf4j
 
 import static io.github.amarcinkowski.PieceType.*
+import static io.github.amarcinkowski.DirectionType.*
 
 @Slf4j
+@Builder(includes = "board, from, to")
 class Move {
 
     Board board
     Square from
     Square to
 
-    private boolean clearWay(List<String> steps) {
+    def getDirection() {
+        CoordinateUtil.direction(from, to)
+    }
+
+    def getStep() {
+        CoordinateUtil.step(from, to)
+    }
+
+    def getSteps() {
+        from.path(direction, step)
+    }
+
+    def getMovedPiece() {
+        board.getPiece(from)
+    }
+
+    def getTargetPiece() {
+        board.getPiece(to)
+    }
+
+    private boolean clearWay() {
         int emptySquaresOnPath = 0
         steps.each { if (board.getPiece(Square.valueOf(it)) == null) emptySquaresOnPath++ }
         steps.size() == emptySquaresOnPath
     }
 
     private boolean capture() {
-        def p = board.getPiece(from)
-        def t = board.getPiece(to)
-        Piece.opposite(p, t)
+        Piece.opposite(movedPiece, targetPiece)
     }
 
     private boolean emptyOrCapture() {
@@ -28,13 +49,11 @@ class Move {
     }
 
     private boolean empty() {
-        def t = board.getPiece(to)
-        t == null
+        targetPiece == null
     }
 
     private boolean isInPawnDirection(DirectionType directionType) {
-        def p = board.getPiece(from)
-        def key = p?.color.toString().toUpperCase() + "_" + directionType
+        def key = movedPiece?.color.toString().toUpperCase() + "_" + directionType
         def direction = CoordinateUtil.direction(from, to)
         DirectionType.valueOf(key).directions.contains(direction)
     }
@@ -58,30 +77,30 @@ class Move {
         step == stepSize
     }
 
-    boolean isValid() {
+    private boolean isPawnRow() {
         def p = board.getPiece(from)
-        def t = board.getPiece(to)
-        def direction = CoordinateUtil.direction(from, to)
-        def step = CoordinateUtil.step(from, to)
-        def steps = from.path(direction, step)
+        from.y == p.color.pawnRow
+    }
 
+    boolean isValid() {
         is(PAWN) && (
-                isInDirection(DirectionType.FORWARD) && distance(1) && empty()
-                        || isInDirection(DirectionType.FORWARD) && distance(2) && from.y == p.color.pawnRow // can go by 2 forward from 2 for white and 7 for black
-                        || (isInDirection(DirectionType.FORWARD_DIAGONAL) && capture() && distance(1))
-        ) ||
-                is(ROOK) && (
-                isInDirection(DirectionType.HORIZONTAL, DirectionType.VERTICAL)
-                        && clearWay(steps)
+                isInDirection(FORWARD) && distance(1) && empty()
+                        || isInDirection(FORWARD) && distance(2) && isPawnRow()
+                        || (isInDirection(FORWARD_DIAGONAL) && capture() && distance(1))
+        ) || is(ROOK) && (
+                isInDirection(HORIZONTAL, VERTICAL)
+                        && clearWay()
                         && emptyOrCapture()
-        ) ||
-                is(KNIGHT) && (
-                isInDirection(DirectionType.KNIGHT_JUMP)
+        ) || is(KNIGHT) && (
+                isInDirection(KNIGHT_JUMP)
                         && emptyOrCapture()
         ) || is(BISHOP) && (
-                isInDirection(DirectionType.DIAGONAL)
-                        && clearWay(steps)
+                isInDirection(DIAGONAL)
+                        && clearWay()
                         && emptyOrCapture()
-        ) || is(KING)
+        ) || is(KING) && (
+                isInDirection(HORIZONTAL, VERTICAL, DIAGONAL)
+                        && emptyOrCapture()
+        )
     }
 }
