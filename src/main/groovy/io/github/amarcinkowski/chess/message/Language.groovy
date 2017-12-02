@@ -1,4 +1,4 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.message
 
 enum Language {
 

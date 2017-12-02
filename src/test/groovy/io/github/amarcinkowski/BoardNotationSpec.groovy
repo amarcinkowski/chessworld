@@ -1,8 +1,10 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
-import io.github.amarcinkowski.chess.board.PieceType
+import io.github.amarcinkowski.chess.board.Figure
+import io.github.amarcinkowski.chess.board.Square
 import io.github.amarcinkowski.chess.board.notation.BoardNotation
+import io.github.amarcinkowski.chess.message.Message
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -17,7 +19,7 @@ class BoardNotationSpec extends Specification {
         expect:
         log.debug "\n${board}"
         assert board.toString() == loaded
-        assert board.getPiece(Square.C3).type == PieceType.KNIGHT
+        assert board.getPiece(Square.C3).type == Figure.KNIGHT
         where:
         language | loaded
         'en'     | "r n b q k b _ r\n" +

@@ -1,8 +1,8 @@
 package io.github.amarcinkowski.chess.board.notation
 
-import io.github.amarcinkowski.Message
+import io.github.amarcinkowski.chess.message.Message
 import io.github.amarcinkowski.chess.board.Piece
-import io.github.amarcinkowski.chess.board.PieceType
+import io.github.amarcinkowski.chess.board.Figure
 
 class PieceNotation extends Notation<Piece> {
 
@@ -13,7 +13,7 @@ class PieceNotation extends Notation<Piece> {
         if (tokens.size() != 2) {
             return null
         }
-        new Piece(type: PieceType.valueOf(tokens.get(1)), color: tokens.get(0))
+        new Piece(type: Figure.valueOf(tokens.get(1)), color: tokens.get(0))
     }
 
     @Override

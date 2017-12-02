@@ -2,7 +2,6 @@ package io.github.amarcinkowski.chess.board
 
 import groovy.transform.builder.Builder
 import groovy.util.logging.Slf4j
-import io.github.amarcinkowski.Square
 import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
 
 import static DirectionType.*
@@ -65,7 +64,7 @@ class Move {
         directionTypes.collect { it.directions }.sum().contains(direction)
     }
 
-    private boolean is(PieceType type) {
+    private boolean is(Figure type) {
         movedPiece?.type == type
     }
 
@@ -77,6 +76,7 @@ class Move {
         from.y == movedPiece?.color.pawnRow
     }
 
+    // TODO isInDirection -> validDirection() in Figure / Figure
     private boolean isForward() {
         isInPawnDirection(FORWARD)
     }
@@ -102,27 +102,27 @@ class Move {
     }
 
     private boolean isPawn() {
-        is(PieceType.PAWN)
+        is(Figure.PAWN)
     }
 
     private boolean isRook() {
-        is(PieceType.ROOK)
+        is(Figure.ROOK)
     }
 
     private boolean isKnight() {
-        is(PieceType.KNIGHT)
+        is(Figure.KNIGHT)
     }
 
     private boolean isBishop() {
-        is(PieceType.BISHOP)
+        is(Figure.BISHOP)
     }
 
     private boolean isKing() {
-        is(PieceType.KING)
+        is(Figure.KING)
     }
 
     private boolean isQueen() {
-        is(PieceType.QUEEN)
+        is(Figure.QUEEN)
     }
 
     private boolean isShortDistance() {

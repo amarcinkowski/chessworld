@@ -1,6 +1,7 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.Square
 import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
 import spock.lang.Specification
 import spock.lang.Unroll

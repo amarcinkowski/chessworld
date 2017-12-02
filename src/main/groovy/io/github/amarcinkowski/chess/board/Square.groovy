@@ -1,11 +1,6 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board
 
 import groovy.util.logging.Slf4j
-import io.github.amarcinkowski.chess.board.Direction
-import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
-
-import static io.github.amarcinkowski.chess.board.Direction.*;
-
 
 @Slf4j
 public enum Square {
@@ -1295,6 +1290,20 @@ public enum Square {
         public int x
         public int y
         private Map<Direction, String[]> map
+
+        /**
+         * TODO return color
+         * @param index
+         * @return 0 for black square / 1 for white
+         */
+        static squareColorByIndex(int index) {
+            def p = index % 2
+            def q = Math.floor(index / 8) % 2
+            def np = (p + 1) % 2
+            def nq = (q + 1) % 2
+            def xor = Math.max(p * nq, q * np)
+            xor
+        }
 
         private List<String> squaresInDirection(Direction direction) {
                 def key = direction.toString()

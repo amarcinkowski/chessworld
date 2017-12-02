@@ -20,8 +20,10 @@ package io.github.amarcinkowski.chess.board
  9632	25A0	 	BLACK SQUARE
  9633	25A1	 	WHITE SQUARE
  */
-public enum PieceType {
+public enum Figure {
     KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN
+
+    // Figure(validDirections)
 
     @Override
     String toString() {
