@@ -20,7 +20,7 @@ class BoardNotation extends Notation<Board> {
     }
 
     /**
-     *
+     * TODO change name to square color
      * @param index
      * @return 0 for black square / 1 for white
      */
@@ -33,12 +33,12 @@ class BoardNotation extends Notation<Board> {
         xor
     }
 
-    static replaceNullWithColor = { it, index -> it == null ? (everySecondEightSwitch(index) == 1 ? "\u25A0" : "\u25A1") : it }
+    static replaceNullWithColor = { it, index -> it == null ? (everySecondEightSwitch(index) == 0 ? "\u25A0" : "\u25A1") : it }
     static replaceNullWithNoneChar = { it -> it == null ? Message.get('none') : it }
 
     @Override
     static String toString(Board board) {
-        // TODO add e.g. @annotation for different notations
+        // TODO add e.g. @annotation for different notations STRATEGY
         board.pieces.withIndex().collect(replaceNullWithColor).collate(8)*.join(' ').reverse().join('\n')
         board.pieces.collect(replaceNullWithNoneChar).collate(8)*.join(' ').reverse().join('\n')
     }
