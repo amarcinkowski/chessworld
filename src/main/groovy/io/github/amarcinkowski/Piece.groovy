@@ -23,13 +23,6 @@ class Piece {
         piece
     }
 
-    static opposite(Piece p1, Piece p2) {
-        p1 != null && p2 != null && (
-                (p1.color == Color.BLACK && p2.color == Color.WHITE) ||
-                        (p1.color == Color.WHITE && p2.color == Color.BLACK)
-        )
-    }
-
     @Override
     String toString() {
         Message.get("${color}", "${type}")

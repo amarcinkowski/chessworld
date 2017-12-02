@@ -34,14 +34,19 @@ class Move {
         board.getPiece(to)
     }
 
-    private boolean isClearWay() {
+    private int getClearSquaresCount() {
         int emptySquaresOnPath = 0
         steps.each { if (board.getPiece(Square.valueOf(it)) == null) emptySquaresOnPath++ }
-        steps.size() == emptySquaresOnPath
+        emptySquaresOnPath
+    }
+
+    private boolean isClearWay() {
+        steps.size() == clearSquaresCount
     }
 
     private boolean isCapture() {
-        Piece.opposite(movedPiece, targetPiece)
+        movedPiece?.color == Color.BLACK && targetPiece?.color == Color.WHITE ||
+                movedPiece?.color == Color.WHITE && targetPiece?.color == Color.BLACK
     }
 
     private boolean isEmptyOrCapture() {
