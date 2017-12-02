@@ -75,7 +75,28 @@ class MovesSpec extends Specification {
         'A1' | 'C1' | false
         'A8' | 'A2' | true
         'H8' | 'H2' | false
-
+        // knight
+        'G1' | 'F3' | true
+        'G1' | 'H3' | true
+        'G1' | 'E2' | false // own pawn
+        'G1' | 'E3' | false // wrong
+        'D4' | 'C6' | true
+        'D4' | 'E6' | true
+        'D4' | 'B5' | true
+        'D4' | 'F5' | true
+        'D4' | 'B3' | true
+        'D4' | 'C2' | true
+        'D4' | 'E2' | true
+        'D4' | 'F3' | true
+        'D4' | 'D4' | false // no move
+        'D4' | 'E4' | false // 1E
+        'D4' | 'F4' | false // 2E
+        'D4' | 'E5' | false // 1NE
+        // bishop
+        'F8' | 'E7' | true
+        'F8' | 'D6' | true
+        'F8' | 'G7' | false // own figure
+        'F8' | 'G8' | false // 1E
 
     }
 }

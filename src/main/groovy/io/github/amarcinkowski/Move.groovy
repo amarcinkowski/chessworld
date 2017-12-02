@@ -65,6 +65,14 @@ class Move {
                 isInDirection(N, W, S, E)
                         && clearWay(steps)
                         && emptyOrCapture()
-        )
+        ) ||
+                is(KNIGHT) && (
+                isInDirection(NNE, NNW, NEE, NWW, SSE, SSW, SEE, SWW)
+                        && emptyOrCapture()
+        ) || is(BISHOP) && (
+                isInDirection(NW, NE, SW, SE)
+                        && clearWay(steps)
+                        && emptyOrCapture()
+        ) || is(KING)
     }
 }
