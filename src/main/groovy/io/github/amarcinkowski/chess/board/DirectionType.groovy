@@ -1,6 +1,6 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board
 
-import static io.github.amarcinkowski.Direction.*
+import static Direction.*
 
 enum DirectionType {
     BLACK_FORWARD_DIAGONAL([SW, SE]),

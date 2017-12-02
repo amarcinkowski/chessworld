@@ -1,8 +1,8 @@
-package io.github.amarcinkowski.notation
+package io.github.amarcinkowski.chess.board.notation
 
 import io.github.amarcinkowski.Message
-import io.github.amarcinkowski.Piece
-import io.github.amarcinkowski.Board
+import io.github.amarcinkowski.chess.board.Piece
+import io.github.amarcinkowski.chess.board.Board
 
 /**
  * Created by am on 02.12.17.

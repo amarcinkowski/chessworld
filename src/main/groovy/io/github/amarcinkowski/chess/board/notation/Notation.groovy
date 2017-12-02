@@ -1,4 +1,4 @@
-package io.github.amarcinkowski.notation
+package io.github.amarcinkowski.chess.board.notation
 
 /**
  * Created by am on 02.12.17.

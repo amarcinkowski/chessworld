@@ -1,4 +1,4 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board
 
 enum Color {
     BLACK(7), WHITE(2)

@@ -1,11 +1,11 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
-import io.github.amarcinkowski.utils.CoordinateUtil
+import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static io.github.amarcinkowski.Direction.*
+import static io.github.amarcinkowski.chess.board.Direction.*
 
 @Slf4j
 class DirectionSpec extends Specification {

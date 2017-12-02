@@ -1,11 +1,11 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board
 
 import groovy.transform.builder.Builder
 import groovy.util.logging.Slf4j
-import io.github.amarcinkowski.utils.CoordinateUtil
+import io.github.amarcinkowski.Square
+import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
 
-import static io.github.amarcinkowski.PieceType.*
-import static io.github.amarcinkowski.DirectionType.*
+import static DirectionType.*
 
 @Slf4j
 @Builder(includes = "board, from, to")
@@ -102,27 +102,27 @@ class Move {
     }
 
     private boolean isPawn() {
-        is(PAWN)
+        is(PieceType.PAWN)
     }
 
     private boolean isRook() {
-        is(ROOK)
+        is(PieceType.ROOK)
     }
 
     private boolean isKnight() {
-        is(KNIGHT)
+        is(PieceType.KNIGHT)
     }
 
     private boolean isBishop() {
-        is(BISHOP)
+        is(PieceType.BISHOP)
     }
 
     private boolean isKing() {
-        is(KING)
+        is(PieceType.KING)
     }
 
     private boolean isQueen() {
-        is(QUEEN)
+        is(PieceType.QUEEN)
     }
 
     private boolean isShortDistance() {

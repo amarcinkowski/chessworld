@@ -1,6 +1,6 @@
-package io.github.amarcinkowski.utils
+package io.github.amarcinkowski.chess.board.utils
 
-import io.github.amarcinkowski.Direction
+import io.github.amarcinkowski.chess.board.Direction
 import io.github.amarcinkowski.Square
 
 class CoordinateUtil {

@@ -1,8 +1,9 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board
 
 import groovy.transform.builder.Builder
 import groovy.transform.builder.DefaultStrategy
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.Message
 
 @Slf4j
 @Builder(builderStrategy = DefaultStrategy)

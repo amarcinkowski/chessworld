@@ -1,7 +1,9 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
-import io.github.amarcinkowski.notation.BoardNotation
+import io.github.amarcinkowski.chess.board.Board
+import io.github.amarcinkowski.chess.board.Move
+import io.github.amarcinkowski.chess.board.notation.BoardNotation
 import spock.lang.Specification
 import spock.lang.Unroll
 
