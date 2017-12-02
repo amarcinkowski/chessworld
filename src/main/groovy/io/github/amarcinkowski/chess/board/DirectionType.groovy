@@ -10,7 +10,7 @@ enum DirectionType {
     FORWARD([]),
     HORIZONTAL([W, E]),
     KNIGHT_JUMP([NNE, NEE, NNW, NWW, SWW, SSW, SEE, SSE]),
-    PERPENDICULAR([N, S, W, E]), // FIXME USE?
+    PERPENDICULAR([N, S, W, E]),
     VERTICAL([N, S]),
     WHITE_FORWARD_DIAGONAL([NW, NE]),
     WHITE_FORWARD([N]),

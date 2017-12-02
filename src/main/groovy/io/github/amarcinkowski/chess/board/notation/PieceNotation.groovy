@@ -4,9 +4,6 @@ import io.github.amarcinkowski.Message
 import io.github.amarcinkowski.chess.board.Piece
 import io.github.amarcinkowski.chess.board.PieceType
 
-/**
- * Created by am on 02.12.17.
- */
 class PieceNotation extends Notation<Piece> {
 
     @Override
