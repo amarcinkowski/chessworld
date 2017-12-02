@@ -25,8 +25,8 @@ class Message {
         }
     }
 
-    static String byValue(Character value) {
-        msgs.get(value.toString())
+    static String byValue(String value) {
+        msgs.get(value)
     }
 
     static String join(String... params) {
@@ -38,7 +38,7 @@ class Message {
         (key == '' || key == null) ?
                 null
                 :
-                msgFile.getObject(key) ?: ' '
+                msgFile.getObject(key) ?: null
     }
 
 }
