@@ -130,34 +130,43 @@ class Move {
         distance(2)
     }
 
-    private boolean isValidPawnMove() {
-        pawn && (forward && shortDistance && empty
-                || forward && doubleShortDistance && fromPawnRow
-                || forwardDiagonal && shortDistance && capture
-        )
+    private boolean isOneStepForward() {
+        forward && shortDistance && empty
     }
 
-    private boolean isValidRookMove() {
+    private boolean isTwoStepForward() {
+        forward && doubleShortDistance && fromPawnRow && clearWay && empty
+    }
+
+    private boolean isPawnCapture() {
+        forwardDiagonal && shortDistance && capture
+    }
+
+    private boolean isPawnMove() {
+        pawn && (oneStepForward || twoStepForward || pawnCapture)
+    }
+
+    private boolean isRookMove() {
         rook && horizontalOrVertical && clearWay && emptyOrCapture
     }
 
-    private boolean isValidKnightMove() {
+    private boolean isKnightMove() {
         knight && jump && emptyOrCapture
     }
 
-    private boolean isValidBishopMove() {
+    private boolean isBishopMove() {
         bishop && diagonal && clearWay && emptyOrCapture
     }
 
-    private boolean isValidKingMove() {
-        king && (horizontalOrVertical || diagonal) && emptyOrCapture && shortDistance
+    private boolean isKingMove() {
+        king && horizontalVerticalDiagonal && shortDistance && emptyOrCapture
     }
 
-    private boolean isValidQueenMove() {
-        queen && (horizontalOrVertical || diagonal) && emptyOrCapture
+    private boolean isQueenMove() {
+        queen && horizontalVerticalDiagonal && clearWay && emptyOrCapture
     }
 
     boolean isValid() {
-        validPawnMove || validRookMove || validKnightMove || validBishopMove || validKingMove || validQueenMove
+        pawnMove || rookMove || knightMove || bishopMove || kingMove || queenMove
     }
 }
