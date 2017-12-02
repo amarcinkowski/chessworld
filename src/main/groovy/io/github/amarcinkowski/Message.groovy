@@ -19,8 +19,7 @@ class Message {
 
     static loadMsgs() {
         msgFile = ResourceBundle.getBundle("message", locale)
-        def keys = msgFile.keySet()
-        for (String key : keys) {
+        for (String key : msgFile.keySet()) {
             def value = msgFile.getObject(key)
             msgs.put(value, key)
         }
@@ -30,9 +29,12 @@ class Message {
         msgs.get(value.toString())
     }
 
+    static String join(String... params) {
+        params.findAll { 'null' != it }.join('.')
+    }
+
     static String get(String... params) {
-        def key = params.findAll { 'null' != it }.join('.')
-        log.trace "msg key $key"
+        def key = join(params)
         (key == '' || key == null) ?
                 null
                 :

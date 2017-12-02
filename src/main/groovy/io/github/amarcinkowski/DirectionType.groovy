@@ -3,17 +3,17 @@ package io.github.amarcinkowski
 import static io.github.amarcinkowski.Direction.*
 
 enum DirectionType {
-    VERTICAL([N, S]),
-    HORIZONTAL([W, E]),
+    BLACK_FORWARD_DIAGONAL([SW, SE]),
+    BLACK_FORWARD([S]),
     DIAGONAL([NE, NW, SE, SW]),
+    FORWARD_DIAGONAL([]),
+    FORWARD([]),
+    HORIZONTAL([W, E]),
     KNIGHT_JUMP([NNE, NEE, NNW, NWW, SWW, SSW, SEE, SSE]),
     PERPENDICULAR([N, S, W, E]), // FIXME USE?
-    WHITE_FORWARD([N]),
-    BLACK_FORWARD([S]),
+    VERTICAL([N, S]),
     WHITE_FORWARD_DIAGONAL([NW, NE]),
-    BLACK_FORWARD_DIAGONAL([SW, SE]),
-    FORWARD([]),
-    FORWARD_DIAGONAL([])
+    WHITE_FORWARD([N]),
 
     final List<Direction> directions
 

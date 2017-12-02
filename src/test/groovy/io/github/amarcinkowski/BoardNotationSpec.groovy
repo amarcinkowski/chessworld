@@ -6,7 +6,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 @Slf4j
-class BoardLoadingSpec extends Specification {
+class BoardNotationSpec extends Specification {
 
     @Unroll
     def "Board read from #language should be read properly"() {
