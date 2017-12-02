@@ -3,7 +3,6 @@ package io.github.amarcinkowski
 import groovy.util.logging.Slf4j
 
 import static io.github.amarcinkowski.PieceType.*
-import static io.github.amarcinkowski.Direction.*
 
 @Slf4j
 class Move {
@@ -33,8 +32,19 @@ class Move {
         t == null
     }
 
-    private boolean isInDirection(Direction[] directions) { // use directionType ?
+    private boolean isInPawnDirection(DirectionType directionType) {
+        def p = board.getPiece(from)
+        def key = p?.color.toString().toUpperCase() + "_" + directionType
         def direction = CoordinateUtil.direction(from, to)
+        DirectionType.valueOf(key).directions.contains(direction)
+    }
+
+    private boolean isInDirection(DirectionType[] directionTypes) {
+        if (is(PAWN)) {
+            return isInPawnDirection(directionTypes.first())
+        }
+        def direction = CoordinateUtil.direction(from, to)
+        def directions = directionTypes.collect { it.directions }.sum()
         directions.contains(direction)
     }
 
@@ -56,21 +66,20 @@ class Move {
         def steps = from.path(direction, step)
 
         is(PAWN) && (
-                // 1-forward
-                direction == p.color.forward && distance(1) && empty() // FIXME TODO direction == p.color.forward -> boolean movingForward(p) { }
-                        || direction == p.color.forward && distance(2) && from.y == p.color.pawnRow // can go by 2 forward from 2 for white and 7 for black
-                        || (p.color.forwardDiagonal.contains(direction) && capture() && distance(1))
+                isInDirection(DirectionType.FORWARD) && distance(1) && empty()
+                        || isInDirection(DirectionType.FORWARD) && distance(2) && from.y == p.color.pawnRow // can go by 2 forward from 2 for white and 7 for black
+                        || (isInDirection(DirectionType.FORWARD_DIAGONAL) && capture() && distance(1))
         ) ||
                 is(ROOK) && (
-                isInDirection(N, W, S, E)
+                isInDirection(DirectionType.HORIZONTAL, DirectionType.VERTICAL)
                         && clearWay(steps)
                         && emptyOrCapture()
         ) ||
                 is(KNIGHT) && (
-                isInDirection(NNE, NNW, NEE, NWW, SSE, SSW, SEE, SWW)
+                isInDirection(DirectionType.KNIGHT_JUMP)
                         && emptyOrCapture()
         ) || is(BISHOP) && (
-                isInDirection(NW, NE, SW, SE)
+                isInDirection(DirectionType.DIAGONAL)
                         && clearWay(steps)
                         && emptyOrCapture()
         ) || is(KING)
