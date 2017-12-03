@@ -45,7 +45,7 @@ class Move {
     }
 
     private boolean isCapture() {
-        Color.opposite(movedPiece?.color, targetPiece?.color)
+        Side.opposite(movedPiece?.color, targetPiece?.color)
     }
 
     private boolean isEmptyOrCapture() {

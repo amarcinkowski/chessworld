@@ -1,6 +1,6 @@
 package io.github.amarcinkowski.chess.board
 
-import static Color.*
+import static Side.*
 
 class Arrangment {
 

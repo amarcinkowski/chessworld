@@ -10,7 +10,7 @@ import io.github.amarcinkowski.chess.board.notation.PieceNotation
 @Builder(builderStrategy = DefaultStrategy)
 class Piece {
     Enum<Figure> type
-    Color color
+    Side color
     boolean captured
 
     static byNotation(Character notation) {

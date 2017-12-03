@@ -17,7 +17,7 @@ enum DirectionType {
 
     final List<Direction> directions
 
-    final byColor(Color color) {
+    final byColor(Side color) {
         DirectionType.valueOf(color.toString().toUpperCase() + "_" + this)
     }
 

@@ -29,12 +29,8 @@ class Message {
         msgs.get(value)
     }
 
-    static String join(String... params) {
-        params.findAll { 'null' != it }.join('.')
-    }
-
     static String get(String... params) {
-        def key = join(params)
+        def key = params.findAll { 'null' != it }.join('.')
         (key == '' || key == null) ?
                 null
                 :
