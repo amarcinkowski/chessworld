@@ -1,7 +1,6 @@
 package io.github.amarcinkowski.chess.board.utils
 
-import io.github.amarcinkowski.chess.board.Direction
-import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
+import io.github.amarcinkowski.chess.board.move.Direction
 
 /**
  * Used to generate enum below

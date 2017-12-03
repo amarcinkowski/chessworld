@@ -1,7 +1,11 @@
-package io.github.amarcinkowski.chess.board
+package io.github.amarcinkowski.chess.board.move
 
 import groovy.transform.builder.Builder
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.Board
+import io.github.amarcinkowski.chess.board.Figure
+import io.github.amarcinkowski.chess.board.Side
+import io.github.amarcinkowski.chess.board.Square
 import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
 
 import static DirectionType.*

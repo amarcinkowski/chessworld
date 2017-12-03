@@ -18,6 +18,6 @@ class PieceNotation extends Notation<Piece> {
 
     @Override
     static String toString(Piece piece) {
-        return piece.toString()
+        Message.get("${piece.color}", "${piece.type}")
     }
 }

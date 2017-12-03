@@ -19,7 +19,8 @@ class Message {
 
     static loadMsgs() {
         msgFile = ResourceBundle.getBundle("message", locale)
-        for (String key : msgFile.keySet()) {
+        def keys = msgFile.keySet()
+        for (String key : keys) {
             def value = msgFile.getObject(key)
             msgs.put(value, key)
         }

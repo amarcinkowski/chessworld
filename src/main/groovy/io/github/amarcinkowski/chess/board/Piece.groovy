@@ -19,7 +19,7 @@ class Piece {
 
     @Override
     String toString() {
-        Message.get("${color}", "${type}")
+        PieceNotation.toString(this)
     }
 
 }

@@ -1,4 +1,6 @@
-package io.github.amarcinkowski.chess.board
+package io.github.amarcinkowski.chess.board.move
+
+import io.github.amarcinkowski.chess.board.Side
 
 import static Direction.*
 

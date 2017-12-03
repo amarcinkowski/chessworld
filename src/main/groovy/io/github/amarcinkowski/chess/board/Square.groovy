@@ -1,6 +1,7 @@
 package io.github.amarcinkowski.chess.board
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.move.Direction
 
 @Slf4j
 public enum Square {
