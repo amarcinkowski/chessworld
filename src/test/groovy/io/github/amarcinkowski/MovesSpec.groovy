@@ -1,6 +1,12 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.Board
+import io.github.amarcinkowski.chess.board.move.Move
+import io.github.amarcinkowski.chess.board.Square
+import io.github.amarcinkowski.chess.board.notation.BoardNotation
+import io.github.amarcinkowski.chess.message.Language
+import io.github.amarcinkowski.chess.message.Message
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -52,7 +58,7 @@ class MovesSpec extends Specification {
                 "∅ ∅ ♘ ∅ ♟ ∅ ∅ ∅\n" +
                 "♙ ♙ ♙ ♙ ♙ ♙ ♙ ∅\n" +
                 "♖ ∅ ♗ ♕ ♔ ♗ ♘ ♖"
-        def board = new Board(init)
+        def board = BoardNotation.valueOf(init)
         expect:
         log.debug "\n${board}"
         assert new Move(board: board, from: Square.valueOf(from), to: Square.valueOf(to)).isValid() == valid

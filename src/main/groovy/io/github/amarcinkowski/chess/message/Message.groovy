@@ -1,4 +1,4 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.message
 
 import groovy.util.logging.Slf4j
 
@@ -12,12 +12,12 @@ class Message {
     public static ResourceBundle msgFile
     final static msgs = [:]
 
-    static void language(String language) {
+    static language(String language) {
         locale = new Locale(language.toLowerCase(), language.toUpperCase())
         loadMsgs()
     }
 
-    def static loadMsgs() {
+    static loadMsgs() {
         msgFile = ResourceBundle.getBundle("message", locale)
         def keys = msgFile.keySet()
         for (String key : keys) {
@@ -26,17 +26,16 @@ class Message {
         }
     }
 
-    static String byValue(Character value) {
-        msgs.get(value.toString())
+    static String byValue(String value) {
+        msgs.get(value)
     }
 
     static String get(String... params) {
         def key = params.findAll { 'null' != it }.join('.')
-        log.trace "msg key $key"
         (key == '' || key == null) ?
                 null
                 :
-                msgFile.getObject(key) ?: ' '
+                msgFile.getObject(key) ?: null
     }
 
 }

@@ -1,49 +1,7 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board
 
 import groovy.util.logging.Slf4j
-import static io.github.amarcinkowski.Direction.*;
-
-
-/**
- * Used to generate enum below
- */
-class Generator {
-
-        private static String[] possibleMoves(Direction direction, int x, int y) {
-                def ret = []
-                for (int stepSize in 1..7) {
-                        if ([NNE, NNW, SSE, SSW, NEE, NWW, SEE, SWW].contains(direction)) {
-                                if (stepSize != 2) {
-                                        continue // leave only proper Knight moves
-                                }
-                        }
-                        def newx = x + direction.xstep * stepSize
-                        def newy = y + (int) (direction.ystep * stepSize)
-                        if (newx > 8 || newx < 1) break
-                        if (newy > 8 || newy < 1) break
-                        ret += "'${CoordinateUtil.x2a(newx)}$newy'"
-                }
-                ret
-        }
-
-        private static allDirections(int x, int y) {
-                def s = ""
-                for (Direction d : Direction.values()) {
-                        s += "\n\t\t$d:${possibleMoves(d, x, y)},"
-                }
-                s
-        }
-
-        public static void main(String[] args) {
-                for (int y in 1..8) {
-                        for (int x in 1..8) {
-                                println """${CoordinateUtil.x2a(x)}${y} (${CoordinateUtil.xy2n(x, y)}, [$x,$y],
-\t\t[ /* squares in directions from ${CoordinateUtil.x2a(x)}${y}*/${allDirections(x, y)}\n\t] as Map),
-"""
-                        }
-                }
-        }
-}
+import io.github.amarcinkowski.chess.board.move.Direction
 
 @Slf4j
 public enum Square {
@@ -1333,6 +1291,20 @@ public enum Square {
         public int x
         public int y
         private Map<Direction, String[]> map
+
+        /**
+         * TODO return color
+         * @param index
+         * @return 0 for black square / 1 for white
+         */
+        static squareColorByIndex(int index) {
+            def p = index % 2
+            def q = Math.floor(index / 8) % 2
+            def np = (p + 1) % 2
+            def nq = (q + 1) % 2
+            def xor = Math.max(p * nq, q * np)
+            xor
+        }
 
         private List<String> squaresInDirection(Direction direction) {
                 def key = direction.toString()

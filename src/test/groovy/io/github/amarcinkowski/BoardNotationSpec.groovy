@@ -1,21 +1,25 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.Figure
+import io.github.amarcinkowski.chess.board.Square
+import io.github.amarcinkowski.chess.board.notation.BoardNotation
+import io.github.amarcinkowski.chess.message.Message
 import spock.lang.Specification
 import spock.lang.Unroll
 
 @Slf4j
-class BoardLoadingSpec extends Specification {
+class BoardNotationSpec extends Specification {
 
     @Unroll
     def "Board read from #language should be read properly"() {
         given:
         Message.language(language)
-        def board = new Board(loaded)
+        def board = BoardNotation.valueOf(loaded)
         expect:
-        log.info "\n${board}"
+        log.debug "\n${board}"
         assert board.toString() == loaded
-        assert board.getPiece(Square.C3).type == PieceType.KNIGHT
+        assert board.getPiece(Square.C3).type == Figure.KNIGHT
         where:
         language | loaded
         'en'     | "r n b q k b _ r\n" +

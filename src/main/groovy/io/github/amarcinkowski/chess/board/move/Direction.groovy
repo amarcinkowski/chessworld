@@ -1,4 +1,4 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board.move
 
 import groovy.util.logging.Slf4j
 import static java.lang.Math.*

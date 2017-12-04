@@ -1,10 +1,12 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.Square
+import io.github.amarcinkowski.chess.board.utils.CoordinateUtil
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static io.github.amarcinkowski.Direction.*
+import static io.github.amarcinkowski.chess.board.move.Direction.*
 
 @Slf4j
 class DirectionSpec extends Specification {
@@ -47,7 +49,6 @@ class DirectionSpec extends Specification {
         1 | 2 | 'A2'
         8 | 8 | 'H8'
     }
-
 
     @Unroll
     def "Step #step in the #direction direction from E5 will take us to #to"() {

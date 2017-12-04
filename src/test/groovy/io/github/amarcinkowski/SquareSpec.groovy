@@ -1,9 +1,10 @@
 package io.github.amarcinkowski
 
 import groovy.util.logging.Slf4j
+import io.github.amarcinkowski.chess.board.Square
 import spock.lang.Specification
 import spock.lang.Unroll
-import static io.github.amarcinkowski.Direction.*
+import static io.github.amarcinkowski.chess.board.move.Direction.*
 
 @Slf4j
 class SquareSpec extends Specification {

@@ -1,4 +1,8 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.game
+
+import io.github.amarcinkowski.chess.message.Language
+import io.github.amarcinkowski.chess.message.Message
+import io.github.amarcinkowski.chess.board.Board
 
 class Game {
 
@@ -10,7 +14,6 @@ class Game {
     Game() {
         Message.language(Language.DEFAULT.toString())
         board = new Board()
-        println board
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,7 @@
-package io.github.amarcinkowski
+package io.github.amarcinkowski.chess.board.utils
+
+import io.github.amarcinkowski.chess.board.move.Direction
+import io.github.amarcinkowski.chess.board.Square
 
 class CoordinateUtil {
 
@@ -26,8 +29,6 @@ class CoordinateUtil {
         Direction.values().find { it -> deltax == it.xstep && deltay == it.ystep }
     }
 
-
-    // // FIXME STEP FOR K moves SHOULD BE 1 not 2
     static int step(Square from, Square to) {
         def deltax = Math.abs(to.x - from.x)
         def deltay = Math.abs(to.y - from.y)
