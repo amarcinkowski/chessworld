@@ -9,8 +9,8 @@ class PieceNotation extends Notation<Piece> {
     @Override
     static Piece valueOf(String notation) {
         String key = Message.byValue(notation)
-        def tokens = key.toUpperCase().tokenize('\\.')
-        if (tokens.size() != 2) {
+        def tokens = key?.toUpperCase()?.tokenize('\\.')
+        if (tokens?.size() != 2) {
             return null
         }
         new Piece(type: Figure.valueOf(tokens.get(1)), color: tokens.get(0))

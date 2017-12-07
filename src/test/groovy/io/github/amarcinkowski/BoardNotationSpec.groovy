@@ -4,6 +4,7 @@ import groovy.util.logging.Slf4j
 import io.github.amarcinkowski.chess.board.Figure
 import io.github.amarcinkowski.chess.board.Square
 import io.github.amarcinkowski.chess.board.notation.BoardNotation
+
 import io.github.amarcinkowski.chess.message.Message
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -14,15 +15,15 @@ class BoardNotationSpec extends Specification {
     @Unroll
     def "Board read from #language should be read properly"() {
         given:
-        Message.language(language)
+        Message.language(language + "-" + country.toUpperCase())
         def board = BoardNotation.valueOf(loaded)
         expect:
         log.debug "\n${board}"
         assert board.toString() == loaded
         assert board.getPiece(Square.C3).type == Figure.KNIGHT
         where:
-        language | loaded
-        'en'     | "r n b q k b _ r\n" +
+        language | country | loaded
+        'en'     | 'US'    | "r n b q k b _ r\n" +
                 "p p p p p p p p\n" +
                 "_ _ _ _ _ n _ _\n" +
                 "_ _ _ _ _ _ _ _\n" +
@@ -30,7 +31,7 @@ class BoardNotationSpec extends Specification {
                 "_ _ N _ _ _ _ _\n" +
                 "P P P P P P P P\n" +
                 "R _ B Q K B N R"
-        'pl'     | "w s g h k g _ w\n" +
+        'pl'     | 'PL'    | "w s g h k g _ w\n" +
                 "p p p _ p p p p\n" +
                 "_ _ _ p _ s _ _\n" +
                 "_ _ _ _ _ _ _ _\n" +
@@ -38,7 +39,7 @@ class BoardNotationSpec extends Specification {
                 "_ _ S _ _ _ _ _\n" +
                 "P P P P _ P P P\n" +
                 "W _ G H K G S W"
-        'eo'     | "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
+        'eo'     | 'EO'    | "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
                 "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n" +
                 "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +
                 "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +

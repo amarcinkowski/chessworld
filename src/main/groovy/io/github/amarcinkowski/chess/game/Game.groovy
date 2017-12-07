@@ -1,7 +1,5 @@
 package io.github.amarcinkowski.chess.game
 
-import io.github.amarcinkowski.chess.message.Language
-import io.github.amarcinkowski.chess.message.Message
 import io.github.amarcinkowski.chess.board.Board
 
 class Game {
@@ -12,7 +10,6 @@ class Game {
     boolean whiteNext = true
 
     Game() {
-        Message.language(Language.DEFAULT.toString())
         board = new Board()
     }
 

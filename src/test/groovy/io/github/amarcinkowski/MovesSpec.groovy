@@ -5,7 +5,7 @@ import io.github.amarcinkowski.chess.board.Board
 import io.github.amarcinkowski.chess.board.move.Move
 import io.github.amarcinkowski.chess.board.Square
 import io.github.amarcinkowski.chess.board.notation.BoardNotation
-import io.github.amarcinkowski.chess.message.Language
+
 import io.github.amarcinkowski.chess.message.Message
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -16,7 +16,7 @@ class MovesSpec extends Specification {
     @Unroll
     def "move #from #to is valid: #valid"() {
         given:
-        Message.language(Language.DEFAULT.toString())
+        Message.language('en-US')
         def board = new Board()
         log.debug "\n$board"
         expect:
@@ -49,7 +49,7 @@ class MovesSpec extends Specification {
     @Unroll
     def "with this game move #from #to is valid: #valid"() {
         given:
-        Message.language('eo')
+        Message.language('eo-EO')
         def init = "♜ ♞ ♝ ♛ ♚ ♝ ∅ ♜\n" +
                 "∅ ♟ ♟ ♟ ∅ ♟ ♟ ♟\n" +
                 "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +
