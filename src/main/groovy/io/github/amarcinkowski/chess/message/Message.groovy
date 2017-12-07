@@ -21,14 +21,13 @@ class Message {
 
     static loadMsgs() {
         msgFile = ResourceBundle.getBundle("message", new Locale.Builder().setLanguageTag(lang).build())
-        log.debug "Loading resource bundle for locale $lang ${msgFile.getLocale()}"
-        log.debug "Available: ${DateFormat.getAvailableLocales()}"
+        log.trace "Loading resource bundle for locale $lang ${msgFile.getLocale()}"
         def keys = msgFile.keySet()
         for (String key : keys) {
             def value = msgFile.getObject(key)
             msgs.put(value, key)
         }
-        log.debug "read ${keys.size()}: ${msgs}"
+        log.debug "read ${keys.size()}: ${msgs.keySet()}"
     }
 
     static String byValue(String value) {
