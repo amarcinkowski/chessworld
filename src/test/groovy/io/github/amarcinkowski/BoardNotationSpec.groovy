@@ -39,6 +39,14 @@ class BoardNotationSpec extends Specification {
                 "_ _ S _ _ _ _ _\n" +
                 "P P P P _ P P P\n" +
                 "W _ G H K G S W"
+        'es'     | 'ES'    | "t c a d r a _ t\n" +
+                "p p p _ p p p p\n" +
+                "_ _ _ p _ c _ _\n" +
+                "_ _ _ _ _ _ _ _\n" +
+                "_ _ _ _ P _ _ _\n" +
+                "_ _ C _ _ _ _ _\n" +
+                "P P P P _ P P P\n" +
+                "T _ A D R A C T"
         'eo'     | 'EO'    | "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
                 "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n" +
                 "∅ ∅ ∅ ∅ ∅ ∅ ∅ ∅\n" +
