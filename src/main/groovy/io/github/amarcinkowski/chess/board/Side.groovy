@@ -5,7 +5,7 @@ enum Side {
 
     public final int pawnRow
 
-    public Side(int pawnRow) {
+    private Side(int pawnRow) {
         this.pawnRow = pawnRow
     }
 

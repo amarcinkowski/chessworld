@@ -6,21 +6,24 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.10'
-    compile 'org.slf4j:slf4j-api:1.7.2'
-    compile 'ch.qos.logback:logback-classic:1.0.9'
-    compile 'ch.qos.logback:logback-core:1.0.9'
-    testCompile(
-            'junit:junit:4.12',
-            'org.codehaus.groovy:groovy-all:2.4.4',
-            'org.spockframework:spock-core:1.0-groovy-2.4'
+    implementation 'org.apache.groovy:groovy-all:4.0.21'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'ch.qos.logback:logback-core:1.2.11'
+    testImplementation(
+            'junit:junit:4.13.2',
+            'org.apache.groovy:groovy-all:4.0.21',
+            'org.spockframework:spock-core:2.3-groovy-4.0'
     )
 }
 
 test {
+    useJUnitPlatform()
     testLogging {
         showStandardStreams = true
     }
 }
 
-mainClassName = 'io.github.amarcinkowski.Game'
+application {
+    mainClass = 'io.github.amarcinkowski.chess.game.Game'
+}
