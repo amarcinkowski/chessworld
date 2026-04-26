@@ -14,7 +14,10 @@ class Game {
     }
 
     public static void main(String[] args) {
-        new Game()
+        io.github.amarcinkowski.chess.message.Message.language('en-US')
+        Game game = new Game()
+        System.out.println("Welcome to chessworld!")
+        System.out.println(game.board.toString())
     }
 
 }

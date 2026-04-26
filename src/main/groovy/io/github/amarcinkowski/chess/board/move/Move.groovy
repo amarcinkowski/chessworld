@@ -45,39 +45,39 @@ class Move {
     }
 
     private boolean isClearWay() {
-        intermediateSquares.size() == clearSquaresCount
+        getIntermediateSquares().size() == getClearSquaresCount()
     }
 
     private boolean isCapture() {
-        Side.opposite(movedPiece?.color, targetPiece?.color)
+        Side.opposite(getMovedPiece()?.color, getTargetPiece()?.color)
     }
 
     private boolean isEmptyOrCapture() {
-        empty || capture
+        isEmpty() || isCapture()
     }
 
     private boolean isEmpty() {
-        targetPiece == null
+        getTargetPiece() == null
     }
 
     private boolean isInPawnDirection(DirectionType directionType) {
-        directionType.byColor(movedPiece?.color).directions.contains(direction)
+        directionType.byColor(getMovedPiece()?.color).directions.contains(getDirection())
     }
 
     private boolean isInDirection(DirectionType[] directionTypes) {
-        directionTypes.collect { it.directions }.sum().contains(direction)
+        directionTypes.collect { it.directions }.sum().contains(getDirection())
     }
 
     private boolean is(Figure type) {
-        movedPiece?.type == type
+        getMovedPiece()?.type == type
     }
 
     private boolean distance(int stepSize) {
-        step == stepSize
+        getStep() == stepSize
     }
 
     private boolean isFromPawnRow() {
-        from.y == movedPiece?.color.pawnRow
+        from.y == getMovedPiece()?.color.pawnRow
     }
 
     // TODO isInDirection -> validDirection() in Figure / Figure
@@ -138,42 +138,42 @@ class Move {
     }
 
     private boolean isOneStepForward() {
-        forward && shortDistance && empty
+        isForward() && isShortDistance() && isEmpty()
     }
 
     private boolean isTwoStepForward() {
-        forward && doubleShortDistance && fromPawnRow && clearWay && empty
+        isForward() && isDoubleShortDistance() && isFromPawnRow() && isClearWay() && isEmpty()
     }
 
     private boolean isPawnCapture() {
-        forwardDiagonal && shortDistance && capture
+        isForwardDiagonal() && isShortDistance() && isCapture()
     }
 
     private boolean isPawnMove() {
-        pawn && (oneStepForward || twoStepForward || pawnCapture)
+        isPawn() && (isOneStepForward() || isTwoStepForward() || isPawnCapture())
     }
 
     private boolean isRookMove() {
-        rook && horizontalOrVertical && clearWay && emptyOrCapture
+        isRook() && isHorizontalOrVertical() && isClearWay() && isEmptyOrCapture()
     }
 
     private boolean isKnightMove() {
-        knight && jump && emptyOrCapture
+        isKnight() && isJump() && isEmptyOrCapture()
     }
 
     private boolean isBishopMove() {
-        bishop && diagonal && clearWay && emptyOrCapture
+        isBishop() && isDiagonal() && isClearWay() && isEmptyOrCapture()
     }
 
     private boolean isKingMove() {
-        king && horizontalVerticalDiagonal && shortDistance && emptyOrCapture
+        isKing() && isHorizontalVerticalDiagonal() && isShortDistance() && isEmptyOrCapture()
     }
 
     private boolean isQueenMove() {
-        queen && horizontalVerticalDiagonal && clearWay && emptyOrCapture
+        isQueen() && isHorizontalVerticalDiagonal() && isClearWay() && isEmptyOrCapture()
     }
 
     boolean isValid() {
-        pawnMove || rookMove || knightMove || bishopMove || kingMove || queenMove
+        isPawnMove() || isRookMove() || isKnightMove() || isBishopMove() || isKingMove() || isQueenMove()
     }
 }

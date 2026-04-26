@@ -11,11 +11,10 @@ class BoardNotation extends Notation<Board> {
      * read board from notation string
      * @param notation
      */
-    @Override
     static Board valueOf(String notation) {
         def pieces = []
         notation.replaceAll(' ', '').split('\n').reverse().join('').toCharArray().each {
-            pieces.add(Piece.byNotation(it))
+            pieces.add(Piece.byNotation(it as Character))
         }
         new Board().builder().pieces(pieces).build()
     }
@@ -23,7 +22,6 @@ class BoardNotation extends Notation<Board> {
     static replaceNullWithColor = { it, index -> it == null ? (Square.squareColorByIndex(index) == 0 ? "\u25A0" : "\u25A1") : it }
     static replaceNullWithNoneChar = { it -> it == null ? Message.get('none') : it }
 
-    @Override
     static String toString(Board board) {
         // TODO add e.g. @annotation for different notations STRATEGY
         board.pieces.withIndex().collect(replaceNullWithColor).collate(8)*.join(' ').reverse().join('\n')
