@@ -16,11 +16,22 @@ class Board {
      * init board with pieces starting position
      */
     Board() {
-        pieces = Arrangment.getPieces()
+        // Create a new list from the template to avoid mutating a shared static state
+        pieces = new ArrayList<>(Arrangment.getPieces())
     }
 
     Piece getPiece(Square sq) {
         pieces.get(sq.ordinal())
+    }
+
+    void setPiece(Square sq, Piece piece) {
+        pieces.set(sq.ordinal(), piece)
+    }
+
+    void applyMove(Square from, Square to) {
+        Piece piece = getPiece(from)
+        setPiece(to, piece)
+        setPiece(from, null)
     }
 
     @Override

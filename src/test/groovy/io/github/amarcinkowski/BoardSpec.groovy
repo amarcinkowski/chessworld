@@ -9,6 +9,20 @@ import spock.lang.Unroll
 @Slf4j
 class BoardSpec extends Specification {
 
+    def "Board applyMove should move piece correctly"() {
+        given:
+        Message.language('en-US')
+        def board = new Board()
+        expect:
+        assert board.getPiece(io.github.amarcinkowski.chess.board.Square.E2).type == io.github.amarcinkowski.chess.board.Figure.PAWN
+        assert board.getPiece(io.github.amarcinkowski.chess.board.Square.E4) == null
+        when:
+        board.applyMove(io.github.amarcinkowski.chess.board.Square.E2, io.github.amarcinkowski.chess.board.Square.E4)
+        then:
+        assert board.getPiece(io.github.amarcinkowski.chess.board.Square.E2) == null
+        assert board.getPiece(io.github.amarcinkowski.chess.board.Square.E4).type == io.github.amarcinkowski.chess.board.Figure.PAWN
+    }
+
     @Unroll
     def "Board should look like this in #language notation"() {
         given:

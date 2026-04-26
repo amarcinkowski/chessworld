@@ -27,3 +27,7 @@ test {
 application {
     mainClass = 'io.github.amarcinkowski.chess.game.Game'
 }
+
+run {
+    standardInput = System.in
+}
